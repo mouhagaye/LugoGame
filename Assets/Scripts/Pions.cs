@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pions : MonoBehaviour
 {
     public GameObject points;
-    private int[] pointsIndex = new int[72];
+    private int[] pointsIndex = new int[76];
     private int nextIndex = 0;
     private int i;
     private int currentIndex;
@@ -13,12 +13,39 @@ public class Pions : MonoBehaviour
     public Transform destination;
     public float moveSpeed = 2f;
     int distance = 0;
+    public enum COULEUR
+    {
+        VERT,
+        JAUNE,
+        ROUGE,
+        BLEU
+    }
+    public COULEUR pionCouleur;
+    public COULEUR currentTour;
+
     // Start is called before the first frame update
     void Start()
     {
-        for (i = 0; i <= 71; i++){
+        for (int i = 0; i <= 75; i++){
         pointsIndex[i] = i;
         }
+        switch (pionCouleur)
+        {
+            case COULEUR.VERT:
+                currentIndex = 0;
+                break;
+            case COULEUR.JAUNE:
+                currentIndex = 57;
+                break;
+            case COULEUR.ROUGE:
+                currentIndex = 19;
+                break;
+            case COULEUR.BLEU:
+                currentIndex = 38;
+                break;
+        }
+
+        currentTour = COULEUR.VERT;
         
     }
 
@@ -26,35 +53,94 @@ public class Pions : MonoBehaviour
     void Update()
     {
         distance = Dice.result;
+        switch(Dice.couleur_state){
+            case Dice.COULEUR_STATE.VERT:
+                currentTour = COULEUR.VERT;
+                break;
+            case Dice.COULEUR_STATE.JAUNE:
+                currentTour = COULEUR.JAUNE;
+                break;
+            case Dice.COULEUR_STATE.ROUGE:
+                currentTour = COULEUR.ROUGE;
+                break;
+            case Dice.COULEUR_STATE.BLEU:
+                currentTour = COULEUR.BLEU;
+                break;
+        }
+        Debug.Log(currentTour);
+
+        
     }
     private void OnMouseDown(){
-        // StartCoroutine("Move");
+        if (currentTour == pionCouleur){
             StartCoroutine("Move");
+        }
     }
     IEnumerator Move(){
-        // for(int i = 0; i < 72; i++){
-        //     if((transform.position - points.transform.GetChild(i).position).sqrMagnitude <= 0.05f ){
-        //         currentIndex = i;
-        //         Debug.Log("position actuel :"+currentIndex);
-
-        //          break;
-        //      }
-        // }
+         
+       
         for (int i = 0; i <= distance; i++){
-            nextIndex = (currentIndex + i)%71;
-            if(nextIndex == 11 || nextIndex == 29 || nextIndex == 47){
-                currentIndex += 5;
+            nextIndex = (currentIndex + i)%76;
+
+            switch (pionCouleur)
+            {
+                case COULEUR.VERT:
+                    if(nextIndex == 11 || nextIndex == 30 || nextIndex == 49){
+                        currentIndex += 6;
+                        }
+                    break;
+                case COULEUR.JAUNE:
+                    if(nextIndex == 11 || nextIndex == 30 || nextIndex == 68){
+                        currentIndex += 6;
+                        }
+                    break;
+                case COULEUR.ROUGE:
+                    if(nextIndex == 68 || nextIndex == 30 || nextIndex == 49){
+                        currentIndex += 6;
+                        }
+                    break;
+                case COULEUR.BLEU:
+                    if(nextIndex == 11 || nextIndex == 68 || nextIndex == 49){
+                        currentIndex += 6;
+                        }
+                    break;
             }
+
             destination = points.transform.GetChild(nextIndex);
-            // Debug.Log("next index :"+(currentIndex+distance));
-                while ((transform.position - destination.position).sqrMagnitude > 0.001f) 
+                while ((transform.position - destination.position).sqrMagnitude >= 0.001f) 
                     {   
-                    transform.position = Vector2.MoveTowards(transform.position, destination.position, moveSpeed*Time.deltaTime );
+                    transform.position = Vector2.MoveTowards(transform.position, destination.position, moveSpeed*Time.deltaTime ); 
+                    
                 }
             yield return new WaitForSeconds(0.5f);
         }
+       
         currentIndex = nextIndex;
-            // Debug.Log("destionation: "+destination.position +"position: "+transform.position);
+        Debug.Log("la distance est ega la :"+distance);
 
+        Debug.Log("Dokhba parei ");
+        if (distance != 6){
+            Dice.updateTour();
+        }
+
+    
+
+    }
+    void updateTour(){
+        switch (currentTour)
+            {
+                case COULEUR.VERT:
+                    currentTour = COULEUR.JAUNE; 
+                    break;
+                case COULEUR.JAUNE:
+                    currentTour = COULEUR.BLEU;
+                    break;
+                case COULEUR.ROUGE:
+                    currentTour = COULEUR.VERT;
+                    break;
+                case COULEUR.BLEU:
+                    currentTour = COULEUR.ROUGE;
+                    break;
+            }
     }
 }
