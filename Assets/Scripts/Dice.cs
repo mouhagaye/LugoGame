@@ -7,6 +7,7 @@ public class Dice : MonoBehaviour
     private Sprite[] diceSides;
     private SpriteRenderer rend;
     public static int result;
+    public static bool canClick;
     public enum COULEUR_STATE{
         VERT,
         JAUNE,
@@ -20,10 +21,13 @@ public class Dice : MonoBehaviour
         rend = GetComponent<SpriteRenderer>();
         diceSides = Resources.LoadAll<Sprite>("Dice/");
         couleur_state = COULEUR_STATE.VERT;
+        canClick = true;
         
     }
     private void OnMouseDown() {
-        StartCoroutine("RollTheDice");    
+        if(canClick){
+            StartCoroutine("RollTheDice");
+        }    
     }
     private IEnumerator RollTheDice(){
         int randomDiceSide = 0;
@@ -31,7 +35,7 @@ public class Dice : MonoBehaviour
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(0,5);
+            randomDiceSide = Random.Range(0,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);
@@ -39,7 +43,13 @@ public class Dice : MonoBehaviour
 
         finalSide = randomDiceSide + 1;
         result = finalSide;
+        canClick = false;
+        Pions.canMove = true;
 
+
+    }
+    void Update(){
+        // Debug.Log(canClick);
     }
 
     // Update is called once per frame
