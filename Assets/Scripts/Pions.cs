@@ -75,6 +75,7 @@ public class Pions : MonoBehaviour
             }
              if((transform.position - home.position).sqrMagnitude <= 0.005f){
                              transform.gameObject.SetActive(false);
+                             Debug.Log("Home na !!!!!!!!!!!");
                      } 
 
         updateTour();
@@ -143,37 +144,54 @@ public class Pions : MonoBehaviour
     void updateTour(){
         switch(Dice.couleur_state){
             case Dice.COULEUR_STATE.VERT:
-                if(transform.gameObject.active){
-                    currentTour = COULEUR.VERT;
-                }
-                else{
-                    currentTour = COULEUR.JAUNE;
-                }
+                currentTour = COULEUR.VERT;
                 break;
             case Dice.COULEUR_STATE.JAUNE:
-                if(transform.gameObject.active){
-                    currentTour = COULEUR.JAUNE;
-                }
-                else{
-                    currentTour = COULEUR.BLEU;
-                }
+                currentTour = COULEUR.JAUNE;
                 break;
             case Dice.COULEUR_STATE.ROUGE:
-                if(transform.gameObject.active){
-                    currentTour = COULEUR.ROUGE;
-                }
-                else{
-                    currentTour = COULEUR.VERT;
-                }
+                currentTour = COULEUR.ROUGE;
                 break;
             case Dice.COULEUR_STATE.BLEU:
-                if(transform.gameObject.active){
-                    currentTour = COULEUR.BLEU;
-                }
-                else{
-                    currentTour = COULEUR.ROUGE;
-                }
+                currentTour = COULEUR.BLEU;
                 break;
         }
     }
 }
+// void updateTour(){
+//         switch(Dice.couleur_state){
+//             case Dice.COULEUR_STATE.VERT:
+//                 if(transform.gameObject.active){
+//                     currentTour = COULEUR.VERT;
+//                 }
+//                 else{
+//                     currentTour = COULEUR.JAUNE;
+//                 }
+//                 break;
+//             case Dice.COULEUR_STATE.JAUNE:
+//                 if(transform.gameObject.active){
+//                     currentTour = COULEUR.JAUNE;
+//                 }
+//                 else{
+//                     currentTour = COULEUR.BLEU;
+//                 }
+//                 break;
+//             case Dice.COULEUR_STATE.ROUGE:
+//                 if(transform.gameObject.active){
+//                     currentTour = COULEUR.ROUGE;
+//                 }
+//                 else{
+//                     currentTour = COULEUR.VERT;
+//                 }
+//                 break;
+//             case Dice.COULEUR_STATE.BLEU:
+//                 if(transform.gameObject.active){
+//                     currentTour = COULEUR.BLEU;
+//                 }
+//                 else{
+//                     currentTour = COULEUR.ROUGE;
+//                 }
+//                 break;
+//         }
+//     }
+// }
