@@ -14,6 +14,12 @@ public class Pions : MonoBehaviour
     public Transform destination;
     public Transform home;
 
+    public static bool VertBlock;
+    public static bool JauneBlock;
+    public static bool BleuBlock;
+    public static bool RougeBlock;
+
+
     public float moveSpeed = 2f;
     int distance = 0;
     public enum COULEUR
@@ -21,10 +27,13 @@ public class Pions : MonoBehaviour
         VERT,
         JAUNE,
         ROUGE,
-        BLEU
+        BLEU,
+        FIN
     }
     public COULEUR pionCouleur;
     public COULEUR currentTour;
+
+     
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +59,11 @@ public class Pions : MonoBehaviour
 
         currentTour = COULEUR.ROUGE;
         canMove = true;
+        VertBlock = false;
+        JauneBlock = false;
+        RougeBlock = false;
+        BleuBlock = false;
+
         
     }
 
@@ -75,13 +89,27 @@ public class Pions : MonoBehaviour
             }
              if((transform.position - home.position).sqrMagnitude <= 0.005f){
                              transform.gameObject.SetActive(false);
-                             Debug.Log("Home na !!!!!!!!!!!");
-                     } 
+                    switch(pionCouleur)
+                    {
+                        case COULEUR.VERT:
+                            VertBlock = true;
+                            break;
+                        case COULEUR.JAUNE:
+                            JauneBlock = true;
+                            break;
+                        case COULEUR.ROUGE:
+                            BleuBlock = true;
+                            break;
+                        case COULEUR.BLEU:
+                            RougeBlock = true;
+                            break;
+                    }
+                     Dice.updateTour();
+            } 
 
         updateTour();
-        
-
         Debug.Log(currentTour);
+        Debug.Log("V = :"+VertBlock +",J = :"+ JauneBlock  +",R = :"+RougeBlock  +",B = :"+BleuBlock);
 
         
     }

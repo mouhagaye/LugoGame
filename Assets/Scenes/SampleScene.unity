@@ -257,7 +257,7 @@ GameObject:
   - component: {fileID: 76869596}
   m_Layer: 6
   m_Name: rouge
-  m_TagString: Untagged
+  m_TagString: Pion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -293,6 +293,7 @@ MonoBehaviour:
   points: {fileID: 108498020}
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
+  home: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 2
   currentTour: 0
@@ -1074,7 +1075,7 @@ GameObject:
   - component: {fileID: 734104752}
   m_Layer: 6
   m_Name: vert
-  m_TagString: Untagged
+  m_TagString: Pion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1094,6 +1095,7 @@ MonoBehaviour:
   points: {fileID: 108498020}
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
+  home: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 0
   currentTour: 0
@@ -1492,7 +1494,7 @@ GameObject:
   - component: {fileID: 1004429199}
   m_Layer: 6
   m_Name: bleu
-  m_TagString: Untagged
+  m_TagString: Pion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1528,6 +1530,7 @@ MonoBehaviour:
   points: {fileID: 108498020}
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
+  home: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 3
   currentTour: 0
@@ -2984,7 +2987,7 @@ GameObject:
   - component: {fileID: 1949848118}
   m_Layer: 6
   m_Name: jaune
-  m_TagString: Untagged
+  m_TagString: Pion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3020,6 +3023,7 @@ MonoBehaviour:
   points: {fileID: 108498020}
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
+  home: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 1
   currentTour: 0

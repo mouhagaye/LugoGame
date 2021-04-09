@@ -8,6 +8,7 @@ public class Dice : MonoBehaviour
     private SpriteRenderer rend;
     public static int result;
     public static bool canClick;
+    public static bool FinPartie;
     public enum COULEUR_STATE{
         VERT,
         JAUNE,
@@ -22,6 +23,7 @@ public class Dice : MonoBehaviour
         diceSides = Resources.LoadAll<Sprite>("Dice/");
         couleur_state = COULEUR_STATE.VERT;
         canClick = true;
+        FinPartie = false;
         
     }
     private void OnMouseDown() {
@@ -57,16 +59,61 @@ public class Dice : MonoBehaviour
         switch (couleur_state)
             {
                 case COULEUR_STATE.VERT:
-                    couleur_state = COULEUR_STATE.JAUNE; 
+                    if (!Pions.JauneBlock){
+                        couleur_state = COULEUR_STATE.JAUNE;
+                    }
+                    else if (!Pions.BleuBlock){
+                        couleur_state = COULEUR_STATE.BLEU;
+                    }
+                    else if (!Pions.RougeBlock){
+                        couleur_state = COULEUR_STATE.ROUGE;
+                    }
+                    else{
+                        FinPartie = true;
+                    }
+
                     break;
                 case COULEUR_STATE.JAUNE:
-                    couleur_state = COULEUR_STATE.BLEU;
+                    if (!Pions.BleuBlock){
+                        couleur_state = COULEUR_STATE.BLEU;
+                    }
+                    else if (!Pions.RougeBlock){
+                        couleur_state = COULEUR_STATE.ROUGE;
+                    }
+                    else if (!Pions.VertBlock){
+                        couleur_state = COULEUR_STATE.VERT;
+                    }
+                    else{
+                        FinPartie = true;
+                    }
                     break;
                 case COULEUR_STATE.BLEU:
-                    couleur_state = COULEUR_STATE.ROUGE;
+                    if (!Pions.RougeBlock){
+                        couleur_state = COULEUR_STATE.ROUGE;
+                    }
+                    else if (!Pions.VertBlock){
+                        couleur_state = COULEUR_STATE.VERT;
+                    }
+                    else if (!Pions.JauneBlock){
+                        couleur_state = COULEUR_STATE.JAUNE;
+                    }
+                    else{
+                        FinPartie = true;
+                    }
                     break;
                 case COULEUR_STATE.ROUGE:
-                    couleur_state = COULEUR_STATE.VERT;
+                    if (!Pions.VertBlock){
+                        couleur_state = COULEUR_STATE.VERT;
+                    }
+                    else if (!Pions.JauneBlock){
+                        couleur_state = COULEUR_STATE.JAUNE;
+                    }
+                    else if (!Pions.BleuBlock){
+                        couleur_state = COULEUR_STATE.BLEU;
+                    }
+                    else{
+                        FinPartie = true;
+                    }
                     break;
             }
     }
