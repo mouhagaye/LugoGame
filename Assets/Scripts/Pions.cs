@@ -10,7 +10,7 @@ public class Pions : MonoBehaviour
     private int i;
     private int currentIndex;
     public static bool canMove;
-    public Transform currentPoint;
+    public GameObject currentPoint;
     public Transform destination;
     public Transform home;
 
@@ -18,6 +18,11 @@ public class Pions : MonoBehaviour
     public static bool JauneBlock;
     public static bool BleuBlock;
     public static bool RougeBlock;
+    public static int Vindex;
+    public static int Jindex;
+    public static int Bindex;
+    public static int Rindex;
+
 
 
     public float moveSpeed = 2f;
@@ -61,8 +66,8 @@ public class Pions : MonoBehaviour
         canMove = true;
         VertBlock = false;
         JauneBlock = false;
-        RougeBlock = false;
-        BleuBlock = false;
+        RougeBlock = true;
+        BleuBlock = true;
 
         
     }
@@ -108,8 +113,7 @@ public class Pions : MonoBehaviour
             } 
 
         updateTour();
-        Debug.Log(currentTour);
-        Debug.Log("V = :"+VertBlock +",J = :"+ JauneBlock  +",R = :"+RougeBlock  +",B = :"+BleuBlock);
+        // Debug.Log(currentTour);
 
         
     }
@@ -130,21 +134,28 @@ public class Pions : MonoBehaviour
                     if(nextIndex == 11 || nextIndex == 30 || nextIndex == 49){
                         currentIndex += 6;
                         }
+                    Vindex = currentIndex + distance;
+                    
                     break;
                 case COULEUR.JAUNE:
                     if(nextIndex == 11 || nextIndex == 30 || nextIndex == 68){
                         currentIndex += 6;
                         }
+                    Jindex = currentIndex + distance;
+
                     break;
                 case COULEUR.ROUGE:
                     if(nextIndex == 68 || nextIndex == 30 || nextIndex == 49){
                         currentIndex += 6;
                         }
+                        Rindex = currentIndex + distance;
+
                     break;
                 case COULEUR.BLEU:
                     if(nextIndex == 11 || nextIndex == 68 || nextIndex == 49){
                         currentIndex += 6;
                         }
+                    Bindex = currentIndex + distance;
                     break;
             }
 
@@ -186,40 +197,4 @@ public class Pions : MonoBehaviour
         }
     }
 }
-// void updateTour(){
-//         switch(Dice.couleur_state){
-//             case Dice.COULEUR_STATE.VERT:
-//                 if(transform.gameObject.active){
-//                     currentTour = COULEUR.VERT;
-//                 }
-//                 else{
-//                     currentTour = COULEUR.JAUNE;
-//                 }
-//                 break;
-//             case Dice.COULEUR_STATE.JAUNE:
-//                 if(transform.gameObject.active){
-//                     currentTour = COULEUR.JAUNE;
-//                 }
-//                 else{
-//                     currentTour = COULEUR.BLEU;
-//                 }
-//                 break;
-//             case Dice.COULEUR_STATE.ROUGE:
-//                 if(transform.gameObject.active){
-//                     currentTour = COULEUR.ROUGE;
-//                 }
-//                 else{
-//                     currentTour = COULEUR.VERT;
-//                 }
-//                 break;
-//             case Dice.COULEUR_STATE.BLEU:
-//                 if(transform.gameObject.active){
-//                     currentTour = COULEUR.BLEU;
-//                 }
-//                 else{
-//                     currentTour = COULEUR.ROUGE;
-//                 }
-//                 break;
-//         }
-//     }
-// }
+

@@ -48,6 +48,42 @@ public class Dice : MonoBehaviour
         canClick = false;
         Pions.canMove = true;
 
+        
+        
+        Debug.Log(couleur_state);
+        Debug.Log(Pions.Vindex);
+
+        switch(couleur_state){
+            case COULEUR_STATE.VERT:
+                if(Pions.Vindex + result > 74){
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+                }
+            break;
+            case COULEUR_STATE.JAUNE:
+                if(Pions.Jindex < 55 && (Pions.Jindex + result > 55)){
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+                }
+            break;
+            case COULEUR_STATE.ROUGE:
+                if(Pions.Jindex < 17 && (Pions.Rindex + result > 17)){
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+                }
+            break;
+            case COULEUR_STATE.BLEU:
+                if(Pions.Jindex < 36 && (Pions.Bindex + result > 36)){
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+                }
+            break;
+        }
+
 
     }
     void Update(){
