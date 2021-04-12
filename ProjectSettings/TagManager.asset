@@ -5,6 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pion
+  - Vert
+  - Jaune
+  - Rouge
+  - Bleu
+  - VERT
+  - JAUNE
+  - ROUGE
+  - BLEU
   layers:
   - Default
   - TransparentFX

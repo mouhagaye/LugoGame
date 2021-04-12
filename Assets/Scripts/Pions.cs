@@ -15,6 +15,15 @@ public class Pions : MonoBehaviour
     public Transform home;
     public bool isOut;
 
+    public GameObject VERT;
+    public GameObject JAUNE;
+    public GameObject ROUGE;
+    public GameObject BLEU;
+
+    public Transform currentPion;
+
+
+
     public static bool VertBlock;
     public static bool JauneBlock;
     public static bool BleuBlock;
@@ -65,10 +74,10 @@ public class Pions : MonoBehaviour
         Rinitial = 19;
         Binitial = 38;
 
-        Vin = 1;
-        Jin = 1;
-        Rin = 1;
-        Bin = 1;
+        Vin = 4;
+        Jin = 4;
+        Rin = 4;
+        Bin = 4;
 
         Vout = 0;
         Jout = 0;
@@ -102,6 +111,12 @@ public class Pions : MonoBehaviour
         JauneBlock = false;
         RougeBlock = true;
         BleuBlock = true;
+
+        VERT = GameObject.FindGameObjectWithTag("VERT");
+        JAUNE = GameObject.FindGameObjectWithTag("JAUNE");
+        ROUGE = GameObject.FindGameObjectWithTag("ROUGE");
+        BLEU = GameObject.FindGameObjectWithTag("BLEU");
+
 
         
     }
@@ -144,7 +159,12 @@ public class Pions : MonoBehaviour
                             break;
                     }
                      Dice.updateTour();
-            } 
+            }
+            // if(currentTour != pionCouleur){
+            //     if((transform.position - jaune.transform.position).sqrMagnitude <= 0.002f){
+            //          Jindex = Jinitial;
+            //      }
+            // }
 
         updateTour();
       Debug.Log(currentTour);
@@ -159,76 +179,108 @@ public class Pions : MonoBehaviour
     IEnumerator Move(){
          
         distance = Dice.result;
-        for (int i = 0; i <= distance; i++){
-            nextIndex = (currentIndex + i)%76;
-
-            switch (pionCouleur)
-            {
-                case COULEUR.VERT:
-                    if(nextIndex == 11 || nextIndex == 30 || nextIndex == 49){
-                        currentIndex += 6;
-                        }
-                    if(Vout == 0){
-                        distance = 0;
-                    }
-                    Vindex = currentIndex + distance;
-                    if(currentIndex == Vinitial){
-                        Vout = Vout+1;
-                    }
-                    
-                    break;
-                case COULEUR.JAUNE:
-                    if(nextIndex == 11 || nextIndex == 30 || nextIndex == 68){
-                        currentIndex += 6;
-                        }
-                    if(Jout == 0){
-                        distance = 0;
-                    }
-                    Jindex = currentIndex + distance;
-                    if(currentIndex == Jinitial){
-                        Jout = Jout+1;
-                    }
-
-                    break;
-                case COULEUR.ROUGE:
-                    if(nextIndex == 68 || nextIndex == 30 || nextIndex == 49){
-                        currentIndex += 6;
-                        }
-                        Rindex = currentIndex + distance;
-                        if(currentIndex == Rinitial){
-                        Rout = Rout+1;
-                        }
-
-                    break;
-                case COULEUR.BLEU:
-                    if(nextIndex == 11 || nextIndex == 68 || nextIndex == 49){
-                        currentIndex += 6;
-                        }
-                    Bindex = currentIndex + distance;
-                    if(currentIndex == Binitial){
-                        Bout = Bout+1;
-                    }
-                    break;
+         if(!isOut && distance == 6){
+                distance = 0;
+                isOut = true;
             }
+        if(isOut){
+            for (int i = 0; i <= distance; i++){
+                nextIndex = (currentIndex + i)%76;
 
-            destination = points.transform.GetChild(nextIndex);
-                while ((transform.position - destination.position).sqrMagnitude >= 0.001f) 
-                    {   
-                    transform.position = Vector2.MoveTowards(transform.position, destination.position, moveSpeed*Time.deltaTime ); 
-                    
+
+                switch (pionCouleur)
+                {
+                    case COULEUR.VERT:
+                        if(nextIndex == 11 || nextIndex == 30 || nextIndex == 49){
+                            currentIndex += 6;
+                            }
+                        Vindex = currentIndex + distance;
+                        if(currentIndex == Vinitial){
+                            Vout = Vout+1;
+                            Vin = Vin - 1;
+                        }
+                        
+                        break;
+                    case COULEUR.JAUNE:
+                        if(nextIndex == 11 || nextIndex == 30 || nextIndex == 68){
+                            currentIndex += 6;
+                            }
+                        Jindex = currentIndex + distance;
+                        if(currentIndex == Jinitial){
+                            Jout = Jout+1;
+                            Jin = Jin - 1;
+                        }
+
+                        break;
+                    case COULEUR.ROUGE:
+                        if(nextIndex == 68 || nextIndex == 30 || nextIndex == 49){
+                            currentIndex += 6;
+                            }
+                            Rindex = currentIndex + distance;
+                            if(currentIndex == Rinitial){
+                            Rout = Rout+1;
+                            Rin = Rin - 1;
+
+                            }
+
+                        break;
+                    case COULEUR.BLEU:
+                        if(nextIndex == 11 || nextIndex == 68 || nextIndex == 49){
+                            currentIndex += 6;
+                            }
+                        Bindex = currentIndex + distance;
+                        if(currentIndex == Binitial){
+                            Bout = Bout+1;
+                            Bin = Bin - 1;
+
+                        }
+                        break;
                 }
-            yield return new WaitForSeconds(0.5f);
+
+                destination = points.transform.GetChild(nextIndex);
+                    while ((transform.position - destination.position).sqrMagnitude >= 0.001f) 
+                        {   
+                        transform.position = Vector2.MoveTowards(transform.position, destination.position, moveSpeed*Time.deltaTime ); 
+                        
+                    }
+                yield return new WaitForSeconds(0.5f);
+            }
+        
+            currentIndex = nextIndex;
+
+            if (Dice.result != 6){
+                Dice.updateTour();
+            }
+            Dice.canClick = true;
+            canMove = false;
         }
-       
-        currentIndex = nextIndex;
+        switch(pionCouleur){
+            case COULEUR.VERT:
+                for(int i = 0 ; i < 4 ; i++){
+                    currentPion = JAUNE.transform.GetChild(i);
+                    if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
+                        currentPion.position = points.transform.GetChild(57).position;
+                        // currentPion.gameObject.(Pions).currentIndex = 57;
+                        currentPion.gameObject.GetComponent<Pions>().currentIndex = 57;
 
-        if (Dice.result != 6){
-            Dice.updateTour();
+                    }
+                }
+                for(int i = 0 ; i < 4 ; i++){
+                    currentPion = ROUGE.transform.GetChild(i);
+                    if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
+                        currentPion.position = points.transform.GetChild(57).position; 
+                    }
+                }
+                for(int i = 0 ; i < 4 ; i++){
+                    currentPion = BLEU.transform.GetChild(i);
+                    if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
+                        currentPion.position = points.transform.GetChild(57).position; 
+                    }
+                }
+            break;
+
+            
         }
-        Dice.canClick = true;
-        canMove = false;
-
-
     
 
     }
