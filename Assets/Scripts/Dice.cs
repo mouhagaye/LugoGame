@@ -126,7 +126,7 @@ public class Dice : MonoBehaviour
                         index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38 + 75;
                     }
                      if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
-                         Pions.Rhome = true;
+                         Pions.Bhome = true;
                          break;
                      }
                 }

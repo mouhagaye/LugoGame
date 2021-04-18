@@ -119,8 +119,8 @@ public class Pions : MonoBehaviour
 
         currentTour = COULEUR.ROUGE;
         canMove = true;
-        VertBlock = false;
-        JauneBlock = false;
+        VertBlock = true;
+        JauneBlock = true;
         RougeBlock = false;
         BleuBlock = false;
 
