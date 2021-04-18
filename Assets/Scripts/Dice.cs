@@ -83,7 +83,6 @@ public class Dice : MonoBehaviour
                     else{
                         index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57 + 75;
                     }
-                    Debug.Log(index);
                      if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Jhome = true;
                          break;
@@ -96,14 +95,42 @@ public class Dice : MonoBehaviour
                 }
             break;
             case COULEUR_STATE.ROUGE:
-                if((Pions.Rout == 0 && result != 6 ) ||  Pions.Jindex < 17 && (Pions.Rindex + result > 17)){
+            Pions.Rhome = false;
+              for(int i = 0 ; i < 4 ; i++){
+                    currentPion = Pions.ROUGE.transform.GetChild(i);
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 18){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                         Pions.Rhome = true;
+                         break;
+                     }
+                }
+                if((Pions.Rout == 0 || !Pions.Rhome )&& result != 6 ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
                 }
             break;
             case COULEUR_STATE.BLEU:
-                if((Pions.Bout == 0 && result != 6 ) || Pions.Jindex < 36 && (Pions.Bindex + result > 36)){
+                Pions.Bhome = false;
+              for(int i = 0 ; i < 4 ; i++){
+                    currentPion = Pions.BLEU.transform.GetChild(i);
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 37){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                         Pions.Rhome = true;
+                         break;
+                     }
+                }
+                if((Pions.Bout == 0 || !Pions.Bhome )&& result != 6 ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
