@@ -9,6 +9,13 @@ public class Dice : MonoBehaviour
     public static int result;
     public static bool canClick;
     public static bool FinPartie;
+
+    public int randomDiceSide = 0;
+    public int finalSide = 0;
+    public Transform currentPion;
+    public int index = 0;
+
+
     public enum COULEUR_STATE{
         VERT,
         JAUNE,
@@ -32,8 +39,6 @@ public class Dice : MonoBehaviour
         }    
     }
     private IEnumerator RollTheDice(){
-        int randomDiceSide = 0;
-        int finalSide = 0;
 
         for(int i=0; i <= 20; i++){
 
@@ -49,20 +54,42 @@ public class Dice : MonoBehaviour
         Pions.canMove = true;
 
         
-        
         // Debug.Log(couleur_state);
-       
 
         switch(couleur_state){
             case COULEUR_STATE.VERT:
-                if((Pions.Vout == 0 && result != 6 ) || Pions.Vindex + result > 74){
+                Pions.Vhome = false;
+                    for(int i = 0 ; i < 4 ; i++){
+                        currentPion = Pions.VERT.transform.GetChild(i);
+                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            Pions.Vhome = true;
+                            break;
+                        }
+                    }
+                if((Pions.Vout == 0  || !Pions.Vhome) && result != 6 ){
+
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
                 }
             break;
             case COULEUR_STATE.JAUNE:
-                if((Pions.Jout == 0 && result != 6 ) || Pions.Jindex < 55 && (Pions.Jindex + result > 55)){
+            Pions.Jhome = false;
+              for(int i = 0 ; i < 4 ; i++){
+                    currentPion = Pions.JAUNE.transform.GetChild(i);
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 56){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57 + 75;
+                    }
+                    Debug.Log(index);
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                         Pions.Jhome = true;
+                         break;
+                     }
+                }
+                if((Pions.Jout == 0 || !Pions.Jhome )&& result != 6 ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
