@@ -215,14 +215,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 2
@@ -235,6 +235,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &17444585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -276,7 +277,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.8679245, g: 0.50356, b: 0.50356, a: 1}
+  m_Color: {r: 0.90196085, g: 0.427451, b: 0.52156866, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -424,14 +425,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 2
@@ -444,6 +445,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &76869598
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -485,7 +487,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.8679245, g: 0.50356, b: 0.50356, a: 1}
+  m_Color: {r: 1, g: 0.41176474, b: 0.5254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -977,14 +979,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 2
@@ -997,6 +999,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &461509226
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1038,7 +1041,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.8679245, g: 0.50356, b: 0.50356, a: 1}
+  m_Color: {r: 1, g: 0.41037738, b: 0.5240716, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1110,14 +1113,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 1
@@ -1130,6 +1133,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &470912646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1171,7 +1175,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.6981132, g: 0.67227995, b: 0.16135636, a: 1}
+  m_Color: {r: 0.92549026, g: 0.8588236, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1243,14 +1247,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 3
@@ -1263,6 +1267,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &477590382
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1304,7 +1309,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.35933605, g: 0.35933605, b: 0.8018868, a: 1}
+  m_Color: {r: 0.31764707, g: 0.5411765, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1549,14 +1554,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 1
@@ -1569,6 +1574,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &661286001
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1610,7 +1616,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.6981132, g: 0.67227995, b: 0.16135636, a: 1}
+  m_Color: {r: 0.92549026, g: 0.8588236, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1772,14 +1778,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 0
@@ -1792,6 +1798,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &734104750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1833,7 +1840,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.22347811, g: 0.5849056, b: 0.22347811, a: 1}
+  m_Color: {r: 0.22054112, g: 0.7924528, b: 0.36974853, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2221,14 +2228,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 3
@@ -2241,6 +2248,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1004429201
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2282,7 +2290,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.35933605, g: 0.35933605, b: 0.8018868, a: 1}
+  m_Color: {r: 0.3160377, g: 0.54074967, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2578,14 +2586,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 0
@@ -2598,6 +2606,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1141960280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2639,7 +2648,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.22347811, g: 0.5849056, b: 0.22347811, a: 1}
+  m_Color: {r: 0.21960786, g: 0.79215693, b: 0.36862746, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2680,6 +2689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109a90045d0b73d40b5cf2af173764f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomDiceSide: 0
+  finalSide: 0
+  currentPion: {fileID: 0}
+  index: 0
 --- !u!61 &1171265658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2893,14 +2906,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 1
@@ -2913,6 +2926,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1189597699
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2954,7 +2968,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.6981132, g: 0.67227995, b: 0.16135636, a: 1}
+  m_Color: {r: 0.9245283, g: 0.85882354, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3532,14 +3546,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 3
@@ -3552,6 +3566,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1468761411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3593,7 +3608,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.35933605, g: 0.35933605, b: 0.8018868, a: 1}
+  m_Color: {r: 0.31764707, g: 0.5411765, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3665,14 +3680,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 0
@@ -3685,6 +3700,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1487408548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3726,7 +3742,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.22347811, g: 0.5849056, b: 0.22347811, a: 1}
+  m_Color: {r: 0.27450982, g: 0.73333335, b: 0.39607847, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3948,14 +3964,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 3
@@ -3968,6 +3984,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1562251440
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4009,7 +4026,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.35933605, g: 0.35933605, b: 0.8018868, a: 1}
+  m_Color: {r: 0.31764707, g: 0.5411765, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4171,14 +4188,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 2
@@ -4191,6 +4208,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1659650976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4232,7 +4250,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.8679245, g: 0.50356, b: 0.50356, a: 1}
+  m_Color: {r: 1, g: 0.41176474, b: 0.5254902, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4458,14 +4476,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 0
@@ -4478,6 +4496,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1735264849
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4519,7 +4538,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.22347811, g: 0.5849056, b: 0.22347811, a: 1}
+  m_Color: {r: 0.21960786, g: 0.79215693, b: 0.36862746, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4761,14 +4780,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: {fileID: 108498020}
+  currentIndex: 0
+  block: 0
   currentPoint: {fileID: 0}
   destination: {fileID: 649831320}
   home: {fileID: 0}
   isOut: 0
-  VERT: {fileID: 1438689455}
-  JAUNE: {fileID: 1697329725}
-  ROUGE: {fileID: 2094882511}
-  BLEU: {fileID: 1907914994}
+  isHoming: 0
+  catched: 0
   currentPion: {fileID: 0}
   moveSpeed: 2
   pionCouleur: 1
@@ -4781,6 +4800,7 @@ MonoBehaviour:
   Jin: 0
   Rin: 0
   Bin: 0
+  HomeTrigger: 0
 --- !u!212 &1949848120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4822,7 +4842,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
-  m_Color: {r: 0.6981132, g: 0.67227995, b: 0.16135636, a: 1}
+  m_Color: {r: 0.92549026, g: 0.8588236, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
