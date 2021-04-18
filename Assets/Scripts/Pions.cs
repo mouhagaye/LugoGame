@@ -256,8 +256,25 @@ public class Pions : MonoBehaviour
         if(catched){
                 distance = 0;
                 catched = false;
-                transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
                 isOut=false;
+                switch(pionCouleur){
+                    case COULEUR.VERT:
+                        currentIndex = Vinitial;
+                        transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                    break;
+                    case COULEUR.JAUNE:
+                        currentIndex = Jinitial;
+                        transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(-20,-40)/10, 0);
+                    break;
+                    case COULEUR.ROUGE:
+                        currentIndex = Rinitial;
+                        transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                    break;
+                    case COULEUR.BLEU:
+                        currentIndex = Binitial;
+                        transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                    break;
+                }
             }
         if(isOut){
            
@@ -318,12 +335,13 @@ public class Pions : MonoBehaviour
         
             currentIndex = nextIndex;
 
-            if (Dice.result != 6){
+            
+        }
+        if (Dice.result != 6){
                 Dice.updateTour();
             }
             Dice.canClick = true;
             canMove = false;
-        }
         catchPion();        
     
 
