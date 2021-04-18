@@ -170,9 +170,23 @@ public class Pions : MonoBehaviour
                     break;
                 case COULEUR.ROUGE:
                     home = points.transform.GetChild(17);
+                    if(currentIndex < 18 && currentIndex > 11 && !isHoming){
+                             isHoming = true;
+                    }
+                    HomeTrigger = false;
+                    if((currentIndex + Dice.result > 17) && (currentIndex < 18)){
+                        HomeTrigger = true;
+                     }
                     break;
                 case COULEUR.BLEU:
                     home = points.transform.GetChild(36);
+                    if(currentIndex < 37 && currentIndex > 30 && !isHoming){
+                             isHoming = true;
+                    }
+                    HomeTrigger = false;
+                    if((currentIndex + Dice.result > 36) && (currentIndex < 37)){
+                        HomeTrigger = true;
+                     }
                     break;
             }
              if((transform.position - home.position).sqrMagnitude <= 0.005f){
