@@ -69,7 +69,7 @@ public class Dice : MonoBehaviour
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(0,6);
+            randomDiceSide = Random.Range(3,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);

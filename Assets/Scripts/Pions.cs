@@ -134,8 +134,8 @@ public class Pions : MonoBehaviour
         canMove = true;
         VertBlock = false;
         JauneBlock = false;
-        RougeBlock = true;
-        BleuBlock = true;
+        RougeBlock = false;
+        BleuBlock = false;
 
 
         Vhome = false;
@@ -227,7 +227,7 @@ public class Pions : MonoBehaviour
             }
         
         updateTour();
-        Debug.Log(Vout);
+        // Debug.Log(Vout);
 
       Debug.Log(currentTour);
     //   Debug.Log("VERT SORTIES :"+Vout);
@@ -237,7 +237,7 @@ public class Pions : MonoBehaviour
     }
     private void OnMouseDown(){
 
-        if (currentTour == pionCouleur && canMove && (!HomeTrigger)){
+        if (currentTour == pionCouleur && canMove && (!HomeTrigger) && !block){
             StartCoroutine("Move");
         }
     }
@@ -279,6 +279,7 @@ public class Pions : MonoBehaviour
                 distance = 0;
                 catched = false;
                 isOut=false;
+                
                 switch(pionCouleur){
                     case COULEUR.VERT:
                         currentIndex = Vinitial;
@@ -302,7 +303,6 @@ public class Pions : MonoBehaviour
                 catchPion();
             }
         if(isOut){
-           
             for (int i = 0; i <= distance; i++){
                 nextIndex = (currentIndex + i)%76;
 
@@ -315,6 +315,12 @@ public class Pions : MonoBehaviour
                             currentIndex += 6;
                             }
                         Vindex = currentIndex + distance;
+
+                        for(int j = 0 ; j < 4 ; j++){
+                             currentPion = VERT.transform.GetChild(j);
+                             currentPion.gameObject.GetComponent<Pions>().block = true;
+                        }
+                        block = false;
                         
                         break;
                     case COULEUR.JAUNE:
@@ -322,6 +328,11 @@ public class Pions : MonoBehaviour
                             currentIndex += 6;
                             }
                         Jindex = currentIndex + distance;
+                        for(int j = 0 ; j < 4 ; j++){
+                             currentPion = JAUNE.transform.GetChild(j);
+                             currentPion.gameObject.GetComponent<Pions>().block = true;
+                        }
+                        block = false;
 
                         break;
                     case COULEUR.ROUGE:
@@ -329,11 +340,11 @@ public class Pions : MonoBehaviour
                             currentIndex += 6;
                             }
                             Rindex = currentIndex + distance;
-                            if(currentIndex == Rinitial){
-                            Rout = Rout+1;
-                            Rin = Rin - 1;
-
+                            for(int j = 0 ; j < 4 ; j++){
+                             currentPion = ROUGE.transform.GetChild(j);
+                             currentPion.gameObject.GetComponent<Pions>().block = true;
                             }
+                            block = false;
 
                         break;
                     case COULEUR.BLEU:
@@ -341,11 +352,11 @@ public class Pions : MonoBehaviour
                             currentIndex += 6;
                             }
                         Bindex = currentIndex + distance;
-                        if(currentIndex == Binitial){
-                            Bout = Bout+1;
-                            Bin = Bin - 1;
-
+                        for(int j = 0 ; j < 4 ; j++){
+                             currentPion = BLEU.transform.GetChild(j);
+                             currentPion.gameObject.GetComponent<Pions>().block = true;
                         }
+                        block = false;
                         break;
                 }
 
@@ -365,9 +376,22 @@ public class Pions : MonoBehaviour
              if (Dice.result != 6){
                 Dice.updateTour();
             }
-
             
-        }   
+        }
+         for(int j = 0 ; j < 4 ; j++){
+                currentPion = VERT.transform.GetChild(j);
+                currentPion.gameObject.GetComponent<Pions>().block = false;
+
+                currentPion = JAUNE.transform.GetChild(j);
+                currentPion.gameObject.GetComponent<Pions>().block = false;
+
+                currentPion = BLEU.transform.GetChild(j);
+                currentPion.gameObject.GetComponent<Pions>().block = false;
+
+                currentPion = ROUGE.transform.GetChild(j);
+                currentPion.gameObject.GetComponent<Pions>().block = false;
+                 
+        }
 
     }
     void updateTour(){
