@@ -13,6 +13,7 @@ TagManager:
   - JAUNE
   - ROUGE
   - BLEU
+  - arrow
   layers:
   - Default
   - TransparentFX

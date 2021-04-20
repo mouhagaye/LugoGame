@@ -16,6 +16,7 @@ public class Dice : MonoBehaviour
     public int finalSide = 0;
     public Transform currentPion;
     public int index = 0;
+    public GameObject arrow;
 
 
     public enum COULEUR_STATE{
@@ -34,6 +35,8 @@ public class Dice : MonoBehaviour
         canClick = true;
         FinPartie = false;
         TextUI.text = "C'est parti !";
+        arrow = GameObject.FindGameObjectWithTag("arrow");
+        arrow.SetActive(true);
         
     }
     void Update(){
@@ -54,8 +57,10 @@ public class Dice : MonoBehaviour
                 TextUI.color = Color.red;
             break;
         }
+        arrow.SetActive(canClick);
     }
     private void OnMouseDown() {
+        arrow.SetActive(false);
         if(canClick){
             StartCoroutine("RollTheDice");
         }    
@@ -74,6 +79,7 @@ public class Dice : MonoBehaviour
         result = finalSide;
         canClick = false;
         Pions.canMove = true;
+        arrow.SetActive(false);
 
         
         // Debug.Log(couleur_state);

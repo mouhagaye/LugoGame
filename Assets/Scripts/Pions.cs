@@ -370,7 +370,7 @@ public class Pions : MonoBehaviour
             }
             Dice.canClick = true;
             canMove = false;
-        catchPion();        
+        catchPion();
     
 
     }
