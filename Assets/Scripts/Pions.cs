@@ -11,6 +11,18 @@ public class Pions : MonoBehaviour
     public int currentIndex;
     public static bool canMove;
     public bool block;
+    // float Vmin_x = -40;
+    // float Vmax_x = -20;
+    // float Bmin_x = 20;
+    // float Bmax_x = 40;
+
+    // float Vmin_y = 20;
+    // float Vmax_y = 40;
+    // float Bmin_y = -20;
+    // float Bmax_y = -40;
+
+    float min = 40;
+    float max = 20;
 
     public GameObject currentPoint;
     public Transform destination;
@@ -119,8 +131,8 @@ public class Pions : MonoBehaviour
 
         currentTour = COULEUR.ROUGE;
         canMove = true;
-        VertBlock = true;
-        JauneBlock = true;
+        VertBlock = false;
+        JauneBlock = false;
         RougeBlock = false;
         BleuBlock = false;
 
@@ -276,19 +288,19 @@ public class Pions : MonoBehaviour
                 switch(pionCouleur){
                     case COULEUR.VERT:
                         currentIndex = Vinitial;
-                        transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                        transform.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(max,min)/10, 0);
                     break;
                     case COULEUR.JAUNE:
                         currentIndex = Jinitial;
-                        transform.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(-20,-40)/10, 0);
+                        transform.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(-max,-min)/10, 0);
                     break;
                     case COULEUR.ROUGE:
                         currentIndex = Rinitial;
-                        transform.position = new Vector3(Random.Range(20,40)/10 , Random.Range(30,10)/10, 0);
+                        transform.position = new Vector3(Random.Range(max,min)/10 , Random.Range(max,min)/10, 0);
                     break;
                     case COULEUR.BLEU:
                         currentIndex = Binitial;
-                        transform.position = new Vector3(Random.Range(20,40)/10 , Random.Range(-20,-40)/10, 0);
+                        transform.position = new Vector3(Random.Range(max,min)/10 , Random.Range(-max,-min)/10, 0);
                     break;
                 }
             }
@@ -416,7 +428,7 @@ public class Pions : MonoBehaviour
                 for(int i = 0 ; i < 4 ; i++){
                     currentPion = JAUNE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(max,min)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Jinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -426,7 +438,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = ROUGE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(max,min)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Rinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -435,7 +447,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = BLEU.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(30,10)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(max,min)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Binitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -450,7 +462,7 @@ public class Pions : MonoBehaviour
                 for(int i = 0 ; i < 4 ; i++){
                     currentPion = VERT.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(-20,-40)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Jinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -460,7 +472,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = ROUGE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(-20,-40)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Rinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -470,7 +482,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = BLEU.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(-30,-10)/10 , Random.Range(-20,-40)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Vinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -485,7 +497,7 @@ public class Pions : MonoBehaviour
                 for(int i = 0 ; i < 4 ; i++){
                     currentPion = VERT.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(20,40)/10 , Random.Range(10,30)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(min,max)/10 , Random.Range(min,max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Jinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -495,7 +507,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = JAUNE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(20,40)/10 , Random.Range(10,30)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(min,max)/10 , Random.Range(min,max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Rinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -505,7 +517,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = BLEU.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(20,40)/10 , Random.Range(10,30)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(min,max)/10 , Random.Range(min,max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Vinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -519,7 +531,7 @@ public class Pions : MonoBehaviour
                 for(int i = 0 ; i < 4 ; i++){
                     currentPion = VERT.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(20,40)/10 , Random.Range(-20,-40)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(min,max)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Jinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -529,7 +541,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = ROUGE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(20,40)/10 , Random.Range(-20,-40)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(min,max)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Rinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;
@@ -539,7 +551,7 @@ public class Pions : MonoBehaviour
                     }
                     currentPion = JAUNE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
-                        currentPion.position = new Vector3(Random.Range(20,40)/10 , Random.Range(-20,-40)/10, 0);
+                        currentPion.position = new Vector3(Random.Range(min,max)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = Vinitial;
                         currentPion.gameObject.GetComponent<Pions>().isOut = false;
                         currentPion.gameObject.GetComponent<Pions>().catched = true;

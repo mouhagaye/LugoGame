@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dice : MonoBehaviour
 {
     private Sprite[] diceSides;
     private SpriteRenderer rend;
+    public Text TextUI;
     public static int result;
     public static bool canClick;
     public static bool FinPartie;
@@ -31,7 +33,27 @@ public class Dice : MonoBehaviour
         couleur_state = COULEUR_STATE.VERT;
         canClick = true;
         FinPartie = false;
+        TextUI.text = "C'est parti !";
         
+    }
+    void Update(){
+        switch(couleur_state){
+            case COULEUR_STATE.VERT:
+                TextUI.text = "tour de VERT";
+                TextUI.color = Color.green;
+            break;
+            case COULEUR_STATE.JAUNE:
+                TextUI.text = "tour de JAUNE";
+                TextUI.color = Color.yellow;
+            break;
+            case COULEUR_STATE.BLEU:
+                TextUI.text = "tour de BLEU";
+                TextUI.color = Color.blue;
+            break;case COULEUR_STATE.ROUGE:
+                TextUI.text = "tour de ROUGE";
+                TextUI.color = Color.red;
+            break;
+        }
     }
     private void OnMouseDown() {
         if(canClick){
@@ -58,6 +80,7 @@ public class Dice : MonoBehaviour
 
         switch(couleur_state){
             case COULEUR_STATE.VERT:
+
                 Pions.Vhome = false;
                     for(int i = 0 ; i < 4 ; i++){
                         currentPion = Pions.VERT.transform.GetChild(i);
@@ -139,9 +162,6 @@ public class Dice : MonoBehaviour
         }
 
 
-    }
-    void Update(){
-        // Debug.Log(canClick);
     }
 
     // Update is called once per frame
