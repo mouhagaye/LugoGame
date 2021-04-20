@@ -487,10 +487,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &129771682
 SpriteRenderer:
@@ -570,7 +566,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136683575}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.32, y: -4.01, z: 0}
+  m_LocalPosition: {x: -2.32, y: -4.01, z: 5}
   m_LocalScale: {x: 0.4559321, y: 0.45674044, z: 0}
   m_Children: []
   m_Father: {fileID: 1697329726}
@@ -621,10 +617,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &136683579
 SpriteRenderer:
@@ -815,10 +807,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &162347220
 SpriteRenderer:
@@ -1099,10 +1087,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &353167183
 SpriteRenderer:
@@ -1263,10 +1247,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &461509226
 SpriteRenderer:
@@ -1397,10 +1377,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &478643281
 SpriteRenderer:
@@ -1726,10 +1702,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &582816965
 SpriteRenderer:
@@ -1980,10 +1952,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &699143651
 SpriteRenderer:
@@ -2144,10 +2112,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &734104750
 SpriteRenderer:
@@ -2414,7 +2378,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.18, y: 0.59}
   m_AnchorMax: {x: 0.17, y: 0.93}
-  m_AnchoredPosition: {x: 32.999992, y: 15}
+  m_AnchoredPosition: {x: 32.999825, y: 15}
   m_SizeDelta: {x: 168, y: -95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &906333392
@@ -2673,10 +2637,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1004429201
 SpriteRenderer:
@@ -3213,10 +3173,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1126833370
 SpriteRenderer:
@@ -3347,10 +3303,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1159055604
 SpriteRenderer:
@@ -4295,10 +4247,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1547497243
 SpriteRenderer:
@@ -4519,10 +4467,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1600559975
 SpriteRenderer:
@@ -5073,10 +5017,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1949848120
 SpriteRenderer:
@@ -5221,10 +5161,6 @@ MonoBehaviour:
   Jinitial: 57
   Rinitial: 19
   Binitial: 38
-  Vin: 0
-  Jin: 0
-  Rin: 0
-  Bin: 0
   HomeTrigger: 0
 --- !u!212 &1960317439
 SpriteRenderer:

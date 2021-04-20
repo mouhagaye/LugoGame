@@ -90,13 +90,12 @@ public class Dice : MonoBehaviour
                 Pions.Vhome = false;
                     for(int i = 0 ; i < 4 ; i++){
                         currentPion = Pions.VERT.transform.GetChild(i);
-                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                        if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
                             Pions.Vhome = true;
                             break;
                         }
                     }
                 if((Pions.Vout == 0  || !Pions.Vhome) && result != 6 ){
-
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
@@ -106,13 +105,8 @@ public class Dice : MonoBehaviour
             Pions.Jhome = false;
               for(int i = 0 ; i < 4 ; i++){
                     currentPion = Pions.JAUNE.transform.GetChild(i);
-                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 56){
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57;
-                    }
-                    else{
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57 + 75;
-                    }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+            
+                     if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Jhome = true;
                          break;
                      }
@@ -127,13 +121,8 @@ public class Dice : MonoBehaviour
             Pions.Rhome = false;
               for(int i = 0 ; i < 4 ; i++){
                     currentPion = Pions.ROUGE.transform.GetChild(i);
-                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 18){
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19;
-                    }
-                    else{
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19 + 75;
-                    }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                     if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
+                    
                          Pions.Rhome = true;
                          break;
                      }
@@ -148,13 +137,8 @@ public class Dice : MonoBehaviour
                 Pions.Bhome = false;
               for(int i = 0 ; i < 4 ; i++){
                     currentPion = Pions.BLEU.transform.GetChild(i);
-                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 37){
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38;
-                    }
-                    else{
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38 + 75;
-                    }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                     if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
+                    
                          Pions.Bhome = true;
                          break;
                      }
