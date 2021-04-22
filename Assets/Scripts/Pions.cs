@@ -32,20 +32,13 @@ public class Pions : MonoBehaviour
 
 
 
-    public static bool VertBlock;
-    public static bool JauneBlock;
-    public static bool BleuBlock;
-    public static bool RougeBlock;
+
 
     public static bool Vhome;
     public static bool Jhome;
     public static bool Bhome;
     public static bool Rhome;
 
-    public static bool V_homeBlock;
-    public static bool J_homeBlock;
-    public static bool B_homeBlock;
-    public static bool R_homeBlock;
 
     public static int Vindex;
     public static int Jindex;
@@ -125,10 +118,7 @@ public class Pions : MonoBehaviour
 
         currentTour = COULEUR.ROUGE;
         canMove = true;
-        VertBlock = false;
-        JauneBlock = false;
-        RougeBlock = false;
-        BleuBlock = false;
+        
 
 
         Vhome = false;
@@ -146,10 +136,7 @@ public class Pions : MonoBehaviour
         isHoming = false;
         block = false;
 
-        V_homeBlock = false;
-        J_homeBlock = false;
-        R_homeBlock = false;
-        B_homeBlock = false;
+        
     }
 
     // Update is called once per frame
@@ -249,6 +236,7 @@ public class Pions : MonoBehaviour
                 }
                 catchPion();
 
+
             }
         if(catched && distance == 6){
                 distance = 0;
@@ -286,6 +274,7 @@ public class Pions : MonoBehaviour
                 catchPion();
             }
         if(isOut){
+            transform.position = new Vector3(transform.position.x,transform.position.y,1.0f);
             if(isHoming && distance == 6){
                 switch(pionCouleur){
                     case COULEUR.VERT:
@@ -418,6 +407,7 @@ public class Pions : MonoBehaviour
              if (Dice.result != 6){
                 Dice.updateTour();
             }
+            transform.position = new Vector3(transform.position.x,transform.position.y,0.0f);
             
         }
          for(int j = 0 ; j < 4 ; j++){
@@ -459,6 +449,15 @@ public class Pions : MonoBehaviour
         switch(pionCouleur){
             case COULEUR.VERT:
                 for(int i = 0 ; i < 4 ; i++){
+                    currentPion = VERT.transform.GetChild(i);
+                    if(currentPion.name == transform.gameObject.name){
+                        continue;
+                    }
+
+                    if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
+                        currentPion.position = new Vector3(transform.position.x - 0.02f, transform.position.y - 0.11f, 0);
+
+                    }
                     currentPion = JAUNE.transform.GetChild(i);
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
                         currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(max,min)/10, 0);
@@ -496,7 +495,15 @@ public class Pions : MonoBehaviour
 
             case COULEUR.JAUNE:
                 for(int i = 0 ; i < 4 ; i++){
-                    currentPion = VERT.transform.GetChild(i);
+                    currentPion = JAUNE.transform.GetChild(i);
+                    if(currentPion.name == transform.gameObject.name){
+                        continue;
+                    }
+
+                    if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
+                        currentPion.position = new Vector3(transform.position.x - 0.02f, transform.position.y - 0.11f, 0);
+
+                    }
                     if((transform.position - currentPion.position).sqrMagnitude <= 0.002f ){
                         currentPion.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(-min,-max)/10, 0);
                         currentPion.gameObject.GetComponent<Pions>().currentIndex = -1;

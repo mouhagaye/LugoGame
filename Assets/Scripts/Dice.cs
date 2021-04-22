@@ -12,6 +12,11 @@ public class Dice : MonoBehaviour
     public static bool canClick;
     public static bool FinPartie;
 
+    public static bool VertBlock;
+    public static bool JauneBlock;
+    public static bool BleuBlock;
+    public static bool RougeBlock;
+
     public int randomDiceSide = 0;
     public int finalSide = 0;
     public Transform currentPion;
@@ -37,6 +42,11 @@ public class Dice : MonoBehaviour
         TextUI.text = "C'est parti !";
         arrow = GameObject.FindGameObjectWithTag("arrow");
         arrow.SetActive(true);
+
+        VertBlock = false;
+        JauneBlock = false;
+        RougeBlock = true;
+        BleuBlock = true;
         
     }
     void Update(){
@@ -69,7 +79,7 @@ public class Dice : MonoBehaviour
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(0,6);
+            randomDiceSide = Random.Range(4,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);
@@ -175,13 +185,13 @@ public class Dice : MonoBehaviour
         switch (couleur_state)
             {
                 case COULEUR_STATE.VERT:
-                    if (!Pions.JauneBlock){
+                    if (!JauneBlock){
                         couleur_state = COULEUR_STATE.JAUNE;
                     }
-                    else if (!Pions.BleuBlock){
+                    else if (!BleuBlock){
                         couleur_state = COULEUR_STATE.BLEU;
                     }
-                    else if (!Pions.RougeBlock){
+                    else if (!RougeBlock){
                         couleur_state = COULEUR_STATE.ROUGE;
                     }
                     else{
@@ -190,13 +200,13 @@ public class Dice : MonoBehaviour
 
                     break;
                 case COULEUR_STATE.JAUNE:
-                    if (!Pions.BleuBlock){
+                    if (!BleuBlock){
                         couleur_state = COULEUR_STATE.BLEU;
                     }
-                    else if (!Pions.RougeBlock){
+                    else if (!RougeBlock){
                         couleur_state = COULEUR_STATE.ROUGE;
                     }
-                    else if (!Pions.VertBlock){
+                    else if (!VertBlock){
                         couleur_state = COULEUR_STATE.VERT;
                     }
                     else{
@@ -204,13 +214,13 @@ public class Dice : MonoBehaviour
                     }
                     break;
                 case COULEUR_STATE.BLEU:
-                    if (!Pions.RougeBlock){
+                    if (!RougeBlock){
                         couleur_state = COULEUR_STATE.ROUGE;
                     }
-                    else if (!Pions.VertBlock){
+                    else if (!VertBlock){
                         couleur_state = COULEUR_STATE.VERT;
                     }
-                    else if (!Pions.JauneBlock){
+                    else if (!JauneBlock){
                         couleur_state = COULEUR_STATE.JAUNE;
                     }
                     else{
@@ -218,13 +228,13 @@ public class Dice : MonoBehaviour
                     }
                     break;
                 case COULEUR_STATE.ROUGE:
-                    if (!Pions.VertBlock){
+                    if (!VertBlock){
                         couleur_state = COULEUR_STATE.VERT;
                     }
-                    else if (!Pions.JauneBlock){
+                    else if (!JauneBlock){
                         couleur_state = COULEUR_STATE.JAUNE;
                     }
-                    else if (!Pions.BleuBlock){
+                    else if (!BleuBlock){
                         couleur_state = COULEUR_STATE.BLEU;
                     }
                     else{
