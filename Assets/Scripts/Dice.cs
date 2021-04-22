@@ -22,6 +22,7 @@ public class Dice : MonoBehaviour
     public Transform currentPion;
     public int index = 0;
     public GameObject arrow;
+    public int curseur;
 
 
     public enum COULEUR_STATE{
@@ -90,6 +91,7 @@ public class Dice : MonoBehaviour
         canClick = false;
         Pions.canMove = true;
         arrow.SetActive(false);
+        
 
         
         // Debug.Log(couleur_state);
@@ -105,6 +107,23 @@ public class Dice : MonoBehaviour
                             break;
                         }
                     }
+                    // for(int i = 0 ; i < 4 ; i++){
+                    //     currentPion = Pions.VERT.transform.GetChild(i);
+                    //     curseur = currentPion.gameObject.GetComponent<Pions>().currentIndex;
+                    //     if(currentPion.gameObject.GetComponent<Pions>().isOut){
+                    //          for (int j = 0 ; j <= Dice.result; j ++){
+                    //              if(Pions.barrangeCheck[(curseur+ j)%76] != 0 && Pions.barrangeCheck[(curseur+ j)%76] != 1)
+                    //              {
+                    //                  currentPion.gameObject.GetComponent<Pions>().BarrageBlock = true;
+                    //              }
+                    //              else
+                    //              {
+                    //                  currentPion.gameObject.GetComponent<Pions>().BarrageBlock = false;
+                    //              }
+                    //          }
+                    // }
+                    // }
+                    
                 if((Pions.Vout == 0  || !Pions.Vhome) && result != 6 ){
                     updateTour();
                     canClick = true;
@@ -127,6 +146,22 @@ public class Dice : MonoBehaviour
                          break;
                      }
                 }
+                // for(int i = 0 ; i < 4 ; i++){
+                //         currentPion = Pions.JAUNE.transform.GetChild(i);
+                //         curseur = currentPion.gameObject.GetComponent<Pions>().currentIndex;
+                //         if(curseur >= 0 && curseur >= 68 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                //              for (int j = 0 ; j <= Dice.result; j ++){
+                //                  if(Pions.barrangeCheck[curseur+ j] != 0 && Pions.barrangeCheck[curseur + j] != 1)
+                //                  {
+                //                      currentPion.gameObject.GetComponent<Pions>().BarrageBlock = true;
+                //                  }
+                //                  else
+                //                  {
+                //                      currentPion.gameObject.GetComponent<Pions>().BarrageBlock = false;
+                //                  }
+                //              }
+                //     }
+                // }
                 if((Pions.Jout == 0 || !Pions.Jhome )&& result != 6 ){
                     updateTour();
                     canClick = true;
