@@ -69,7 +69,7 @@ public class Dice : MonoBehaviour
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(3,6);
+            randomDiceSide = Random.Range(0,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);
@@ -87,10 +87,10 @@ public class Dice : MonoBehaviour
         switch(couleur_state){
             case COULEUR_STATE.VERT:
 
-                Pions.Vhome = false;
+                 Pions.Vhome = false;
                     for(int i = 0 ; i < 4 ; i++){
                         currentPion = Pions.VERT.transform.GetChild(i);
-                        if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
+                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                             Pions.Vhome = true;
                             break;
                         }
@@ -100,13 +100,19 @@ public class Dice : MonoBehaviour
                     canClick = true;
                     Pions.canMove = false;
                 }
+
             break;
             case COULEUR_STATE.JAUNE:
             Pions.Jhome = false;
               for(int i = 0 ; i < 4 ; i++){
                     currentPion = Pions.JAUNE.transform.GetChild(i);
-            
-                     if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 56){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 56 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Jhome = true;
                          break;
                      }
@@ -121,8 +127,13 @@ public class Dice : MonoBehaviour
             Pions.Rhome = false;
               for(int i = 0 ; i < 4 ; i++){
                     currentPion = Pions.ROUGE.transform.GetChild(i);
-                     if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
-                    
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 18){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 18 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Rhome = true;
                          break;
                      }
@@ -133,12 +144,17 @@ public class Dice : MonoBehaviour
                     Pions.canMove = false;
                 }
             break;
-            case COULEUR_STATE.BLEU:
+             case COULEUR_STATE.BLEU:
                 Pions.Bhome = false;
               for(int i = 0 ; i < 4 ; i++){
                     currentPion = Pions.BLEU.transform.GetChild(i);
-                     if(!currentPion.gameObject.GetComponent<Pions>().isHoming && currentPion.gameObject.GetComponent<Pions>().isOut){
-                    
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 37){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 37 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Bhome = true;
                          break;
                      }
