@@ -68,10 +68,10 @@ public class Pions : MonoBehaviour
     public COULEUR pionCouleur;
     public static COULEUR currentTour;
 
-    public int Vinitial;
-    public int Jinitial;
-    public int Rinitial;
-    public int Binitial;
+    public static int Vinitial;
+    public static int Jinitial;
+    public static int Rinitial;
+    public static int Binitial;
 
     public static int Vin;
     public static int Jin;
@@ -164,7 +164,15 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 75) && Dice.result != 6){
                         HomeTrigger = true;
                      }
-                    
+                    //  if(isOut){
+                    //      BarrageBlock = false;
+                    //      for(int i = 0; i <= Dice.result; i++){           
+                    //          if(barrangeCheck[(currentIndex + i)%76 ] != 0 && barrangeCheck[(currentIndex + i)%76 ] != 1){
+                    //              BarrageBlock = true;
+                    //              break;
+                    //          }
+                    //      }
+                    //  }
                     break;
                 case COULEUR.JAUNE:
                     
@@ -222,7 +230,7 @@ public class Pions : MonoBehaviour
                             currentIndex = Vinitial;
                             Vout = Vout+1;
                             Vin = Vin - 1;
-                            points.transform.GetChild(0).GetComponent<Points>().V_actuel++;
+                            points.transform.GetChild(Vinitial).GetComponent<Points>().V_actuel++;
 
                         
                         break;
@@ -230,7 +238,7 @@ public class Pions : MonoBehaviour
                         currentIndex = Jinitial;
                             Jout = Jout+1;
                             Jin = Jin - 1;
-                            points.transform.GetChild(0).GetComponent<Points>().J_actuel++;
+                            points.transform.GetChild(Jinitial).GetComponent<Points>().J_actuel++;
 
 
                         break;
@@ -238,7 +246,7 @@ public class Pions : MonoBehaviour
                         currentIndex = Rinitial;
                         Rout = Rout+1;
                         Rin = Rin - 1;
-                        points.transform.GetChild(0).GetComponent<Points>().R_actuel++;
+                        points.transform.GetChild(Rinitial).GetComponent<Points>().R_actuel++;
 
 
                         break;
@@ -246,17 +254,17 @@ public class Pions : MonoBehaviour
                         currentIndex = Binitial;
                             Bout = Bout+1;
                             Bin = Bin - 1;
-                            points.transform.GetChild(0).GetComponent<Points>().B_actuel++;
+                            points.transform.GetChild(Binitial).GetComponent<Points>().B_actuel++;
 
                         break;
                 }
                 catchPion();
-            
+                departIndex = currentIndex;
                 
 
 
-
             }
+        
         if(catched && distance == 6){
                 distance = 0;
                 catched = false;
@@ -295,7 +303,6 @@ public class Pions : MonoBehaviour
                 
 
             }
-         departIndex = currentIndex;
         if(isOut){
             transform.position = new Vector3(transform.position.x,transform.position.y,1.0f);
             if(isHoming && distance == 6){
@@ -400,6 +407,7 @@ public class Pions : MonoBehaviour
                     }
                 yield return new WaitForSeconds(0.5f);
             }
+                departIndex = currentIndex;
                 currentIndex = nextIndex;
                 catchPion();
 
@@ -452,20 +460,22 @@ public class Pions : MonoBehaviour
                 currentPion.gameObject.GetComponent<Pions>().block = false;
                  
         }
-        Debug.Log(departIndex);
+        // Debug.Log(departIndex);
+        Debug.Log("current bi moy "+ currentIndex);
+
         switch(pionCouleur)
         {
-            case COULEUR.VERT:
-                points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
-                break;
-            case COULEUR.JAUNE:
-                points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
-                break;
+              case COULEUR.VERT:
+                  points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
+                  break;
+              case COULEUR.JAUNE:
+                  points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
+                  break;
         }
 
 
-        points.transform.GetChild(currentIndex).GetComponent<Points>().barrageCheck();
-        Debug.Log("barca moy borom mboup you khonk yi");
+        //points.transform.GetChild(currentIndex).GetComponent<Points>().barrageCheck();
+        points.transform.GetChild(currentIndex).GetComponent<Points>().barrageCheck(transform.gameObject);
 
     }
     void updateTour(){
