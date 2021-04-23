@@ -50,6 +50,26 @@ public class Points : MonoBehaviour
                     }
                 }
             break;
+            case Pions.COULEUR.BLEU:
+                if(currentPion.GetComponent<Pions>().isOut){
+                    if((currentPion.transform.position - transform.position).sqrMagnitude <= 0.002f){
+                        transform.GetComponent<Points>().B_actuel++;
+                    }
+                    else{
+                        transform.GetComponent<Points>().B_actuel--;
+                    }
+                }
+            break;
+            case Pions.COULEUR.ROUGE:
+                if(currentPion.GetComponent<Pions>().isOut){
+                    if((currentPion.transform.position - transform.position).sqrMagnitude <= 0.002f){
+                        transform.GetComponent<Points>().R_actuel++;
+                    }
+                    else{
+                        transform.GetComponent<Points>().R_actuel--;
+                    }
+                }
+            break;
         }
 
         

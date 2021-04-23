@@ -164,7 +164,24 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 75) && Dice.result != 6){
                         HomeTrigger = true;
                      }
+                    ///////////////////////////////////////////////////////
+                    BarrageBlock = false;
+                    if(isOut){
+                        for(int i = 0; i < Dice.result; i++ ){
+                            if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().J_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if (points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().R_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().B_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                        }
+                    }
+
                     break;
+
                 case COULEUR.JAUNE:
                     
                     home = points.transform.GetChild(55);
@@ -175,6 +192,23 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 55) && (currentIndex < 56)  && Dice.result != 6){
                         HomeTrigger = true;
                      }
+                    ///////////////////////////////////////////////////////
+                    BarrageBlock = false;
+
+                    if(isOut){
+
+                        for(int i = 0; i < Dice.result; i++ ){
+                            if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().V_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if (points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().R_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().B_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                        }
+                    }
                    
                      break;
                 case COULEUR.ROUGE:
@@ -186,6 +220,23 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 17) && (currentIndex < 18)  && Dice.result != 6){
                         HomeTrigger = true;
                      }
+                     ///////////////////////////////////////////////////////
+                    BarrageBlock = false;
+
+                    if(isOut){
+
+                        for(int i = 0; i < Dice.result; i++ ){
+                            if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().V_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if (points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().J_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().B_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                        }
+                    }
                     break;
                 case COULEUR.BLEU:
                     home = points.transform.GetChild(36);
@@ -196,6 +247,23 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 36) && (currentIndex < 37)  && Dice.result != 6){
                         HomeTrigger = true;
                      }
+                     ///////////////////////////////////////////////////////
+                    BarrageBlock = false;
+
+                    if(isOut){
+
+                        for(int i = 0; i < Dice.result; i++ ){
+                            if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().V_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if (points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().R_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                            else if(points.transform.GetChild((currentIndex + i)%76).gameObject.GetComponent<Points>().J_actuel >=  2){
+                                BarrageBlock = true;
+                            }
+                        }
+                    }
                     break;
             }
         
@@ -457,19 +525,22 @@ public class Pions : MonoBehaviour
                 currentPion.gameObject.GetComponent<Pions>().block = false;
                  
         }
-        Debug.Log("depart is :"+departIndex);
-        Debug.Log("current is :"+currentIndex);
-
         
-
         switch(pionCouleur)
         {
-              case COULEUR.VERT:
-                  points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
-                  break;
-              case COULEUR.JAUNE:
-                  points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
-                  break;
+            case COULEUR.VERT:
+                points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
+                break;
+            case COULEUR.JAUNE:
+                points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
+                break;
+            case COULEUR.ROUGE:
+                points.transform.GetChild(departIndex).GetComponent<Points>().R_actuel--;
+                break;
+            case COULEUR.BLEU:
+                points.transform.GetChild(departIndex).GetComponent<Points>().B_actuel--;
+                break;
+
         }
 
         destination.GetComponent<Points>().barrageCheck(transform.gameObject);
