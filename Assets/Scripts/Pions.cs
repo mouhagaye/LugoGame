@@ -164,15 +164,6 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 75) && Dice.result != 6){
                         HomeTrigger = true;
                      }
-                    //  if(isOut){
-                    //      BarrageBlock = false;
-                    //      for(int i = 0; i <= Dice.result; i++){           
-                    //          if(barrangeCheck[(currentIndex + i)%76 ] != 0 && barrangeCheck[(currentIndex + i)%76 ] != 1){
-                    //              BarrageBlock = true;
-                    //              break;
-                    //          }
-                    //      }
-                    //  }
                     break;
                 case COULEUR.JAUNE:
                     
@@ -220,6 +211,7 @@ public class Pions : MonoBehaviour
     }
     IEnumerator Move(){
         distance = Dice.result;
+
          if(!isOut && distance == 6 && !catched){
                 distance = 0;
                 isOut = true;
@@ -259,7 +251,7 @@ public class Pions : MonoBehaviour
                         break;
                 }
                 catchPion();
-                departIndex = currentIndex;
+               //departIndex = currentIndex;
                 
 
 
@@ -303,6 +295,8 @@ public class Pions : MonoBehaviour
                 
 
             }
+        departIndex = currentIndex;
+
         if(isOut){
             transform.position = new Vector3(transform.position.x,transform.position.y,1.0f);
             if(isHoming && distance == 6){
@@ -353,6 +347,7 @@ public class Pions : MonoBehaviour
                         
                         if(nextIndex == 11 || nextIndex == 30 || nextIndex == 49){
                             currentIndex += 6;
+                           
                             }
                         Vindex = currentIndex + distance;
 
@@ -366,6 +361,7 @@ public class Pions : MonoBehaviour
                     case COULEUR.JAUNE:
                         if(nextIndex == 11 || nextIndex == 30 || nextIndex == 68){
                             currentIndex += 6;
+                           
                             }
                         Jindex = currentIndex + distance;
                         for(int j = 0 ; j < 4 ; j++){
@@ -377,6 +373,7 @@ public class Pions : MonoBehaviour
                     case COULEUR.ROUGE:
                         if(nextIndex == 68 || nextIndex == 30 || nextIndex == 49){
                             currentIndex += 6;
+                           
                             }
                             Rindex = currentIndex + distance;
                             for(int j = 0 ; j < 4 ; j++){
@@ -389,6 +386,7 @@ public class Pions : MonoBehaviour
                     case COULEUR.BLEU:
                         if(nextIndex == 11 || nextIndex == 68 || nextIndex == 49){
                             currentIndex += 6;
+                           
                             }
                         Bindex = currentIndex + distance;
                         for(int j = 0 ; j < 4 ; j++){
@@ -407,7 +405,6 @@ public class Pions : MonoBehaviour
                     }
                 yield return new WaitForSeconds(0.5f);
             }
-                departIndex = currentIndex;
                 currentIndex = nextIndex;
                 catchPion();
 
@@ -460,8 +457,10 @@ public class Pions : MonoBehaviour
                 currentPion.gameObject.GetComponent<Pions>().block = false;
                  
         }
-        // Debug.Log(departIndex);
-        Debug.Log("current bi moy "+ currentIndex);
+        Debug.Log("depart is :"+departIndex);
+        Debug.Log("current is :"+currentIndex);
+
+        
 
         switch(pionCouleur)
         {
@@ -473,9 +472,7 @@ public class Pions : MonoBehaviour
                   break;
         }
 
-
-        //points.transform.GetChild(currentIndex).GetComponent<Points>().barrageCheck();
-        points.transform.GetChild(currentIndex).GetComponent<Points>().barrageCheck(transform.gameObject);
+        destination.GetComponent<Points>().barrageCheck(transform.gameObject);
 
     }
     void updateTour(){
