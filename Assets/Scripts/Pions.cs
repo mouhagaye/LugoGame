@@ -10,6 +10,8 @@ public class Pions : MonoBehaviour
     private int nextIndex = 0;
     private int i;
     public int currentIndex;
+    public int departIndex;
+
     public static bool canMove;
     public bool block;
     public bool BarrageBlock;
@@ -64,7 +66,7 @@ public class Pions : MonoBehaviour
         FIN
     }
     public COULEUR pionCouleur;
-    public COULEUR currentTour;
+    public static COULEUR currentTour;
 
     public int Vinitial;
     public int Jinitial;
@@ -162,15 +164,7 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 75) && Dice.result != 6){
                         HomeTrigger = true;
                      }
-                    //  if(isOut){
-                    //      BarrageBlock = false;
-                    //      for(int i = 0; i <= Dice.result; i++){           
-                    //          if(barrangeCheck[(currentIndex + i)%76 ] != 0 && barrangeCheck[(currentIndex + i)%76 ] != 1){
-                    //              BarrageBlock = true;
-                    //              break;
-                    //          }
-                    //      }
-                    //  }
+                    
                     break;
                 case COULEUR.JAUNE:
                     
@@ -182,15 +176,7 @@ public class Pions : MonoBehaviour
                     if((currentIndex + Dice.result > 55) && (currentIndex < 56)  && Dice.result != 6){
                         HomeTrigger = true;
                      }
-                    // if(isOut){
-                    //     BarrageBlock = false;
-                    //      for(int i = 0; i <= Dice.result; i++){
-                    //          if(barrangeCheck[(currentIndex + i)%76 ] != 0 && barrangeCheck[(currentIndex + i)%76] != 2){
-                    //              BarrageBlock = true;
-                    //              break;
-                    //          }
-                    //      }
-                    //  }
+                   
                      break;
                 case COULEUR.ROUGE:
                     home = points.transform.GetChild(17);
@@ -222,9 +208,9 @@ public class Pions : MonoBehaviour
         if (currentTour == pionCouleur && canMove && (!HomeTrigger) && !block && !BarrageBlock){
             StartCoroutine("Move");
         }
+        
     }
     IEnumerator Move(){
-         
         distance = Dice.result;
          if(!isOut && distance == 6 && !catched){
                 distance = 0;
@@ -236,27 +222,36 @@ public class Pions : MonoBehaviour
                             currentIndex = Vinitial;
                             Vout = Vout+1;
                             Vin = Vin - 1;
+                            points.transform.GetChild(0).GetComponent<Points>().V_actuel++;
+
                         
                         break;
                     case COULEUR.JAUNE:
                         currentIndex = Jinitial;
                             Jout = Jout+1;
                             Jin = Jin - 1;
+                            points.transform.GetChild(0).GetComponent<Points>().J_actuel++;
+
 
                         break;
                     case COULEUR.ROUGE:
                         currentIndex = Rinitial;
                         Rout = Rout+1;
                         Rin = Rin - 1;
+                        points.transform.GetChild(0).GetComponent<Points>().R_actuel++;
+
 
                         break;
                     case COULEUR.BLEU:
                         currentIndex = Binitial;
                             Bout = Bout+1;
                             Bin = Bin - 1;
+                            points.transform.GetChild(0).GetComponent<Points>().B_actuel++;
+
                         break;
                 }
                 catchPion();
+            
                 
 
 
@@ -296,9 +291,11 @@ public class Pions : MonoBehaviour
                 Dice.canClick = true;
                 canMove = false;
                 catchPion();
+
                 
 
             }
+         departIndex = currentIndex;
         if(isOut){
             transform.position = new Vector3(transform.position.x,transform.position.y,1.0f);
             if(isHoming && distance == 6){
@@ -330,6 +327,7 @@ public class Pions : MonoBehaviour
 
                 }
                 catchPion();
+
                 
 
 
@@ -404,11 +402,12 @@ public class Pions : MonoBehaviour
             }
                 currentIndex = nextIndex;
                 catchPion();
+
                 
 
 
             }
-        
+            
             Dice.canClick = true;
             canMove = false;
             if((transform.position - home.position).sqrMagnitude <= 0.005f){
@@ -453,6 +452,20 @@ public class Pions : MonoBehaviour
                 currentPion.gameObject.GetComponent<Pions>().block = false;
                  
         }
+        Debug.Log(departIndex);
+        switch(pionCouleur)
+        {
+            case COULEUR.VERT:
+                points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
+                break;
+            case COULEUR.JAUNE:
+                points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
+                break;
+        }
+
+
+        points.transform.GetChild(currentIndex).GetComponent<Points>().barrageCheck();
+        Debug.Log("barca moy borom mboup you khonk yi");
 
     }
     void updateTour(){
@@ -630,5 +643,6 @@ public class Pions : MonoBehaviour
             
         }
     }
+    
 }
 
