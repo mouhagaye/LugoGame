@@ -12,7 +12,7 @@ public class Points : MonoBehaviour
     public int R_actuel;
     public int B_actuel;
 
-    public Transform currentPion;
+    private Transform currentPion;
 
 
     void Start()
