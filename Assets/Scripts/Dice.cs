@@ -78,7 +78,7 @@ public class Dice : MonoBehaviour
                 TextUI.color = Color.red;
             break;
         }
-        remain_six.text = six.ToString();
+        remain_six.text = "nbre de six :\n\t"+six.ToString();
         arrow.SetActive(canClick);
         //Debug.Log(six);
     }
@@ -122,7 +122,7 @@ public class Dice : MonoBehaviour
                  Pions.Vhome = false;
                     for(int i = 0 ; i < 4 ; i++){
                         currentPion = Pions.VERT.transform.GetChild(i);
-                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock){
+                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                             Pions.Vhome = true;
                             break;
                         }
@@ -146,7 +146,7 @@ public class Dice : MonoBehaviour
                     else{
                         index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 56 + 75;
                     }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock){
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Jhome = true;
                          break;
                      }
@@ -168,7 +168,7 @@ public class Dice : MonoBehaviour
                     else{
                         index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 18 + 75;
                     }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock){
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Rhome = true;
                          break;
                      }
@@ -189,7 +189,7 @@ public class Dice : MonoBehaviour
                     else{
                         index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 37 + 75;
                     }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock){
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
                          Pions.Bhome = true;
                          break;
                      }
