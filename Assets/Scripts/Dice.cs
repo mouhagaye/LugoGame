@@ -8,6 +8,8 @@ public class Dice : MonoBehaviour
     private Sprite[] diceSides;
     private SpriteRenderer rend;
     public Text TextUI;
+    public Text remain_six;
+
     public static int result;
     public static bool canClick;
     public static bool FinPartie;
@@ -23,6 +25,7 @@ public class Dice : MonoBehaviour
     public int index = 0;
     public GameObject arrow;
     public int curseur;
+    public static int six;
 
 
     public enum COULEUR_STATE{
@@ -32,6 +35,7 @@ public class Dice : MonoBehaviour
         ROUGE
     }
     public static COULEUR_STATE couleur_state;
+    public static COULEUR_STATE last_tour;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +59,7 @@ public class Dice : MonoBehaviour
         //BleuBlock = true;
         
     }
+    /////////////////////////////////////////   UPDATE     /////////////////////////////
     void Update(){
         switch(couleur_state){
             case COULEUR_STATE.VERT:
@@ -73,19 +78,24 @@ public class Dice : MonoBehaviour
                 TextUI.color = Color.red;
             break;
         }
+        remain_six.text = six.ToString();
         arrow.SetActive(canClick);
+        //Debug.Log(six);
     }
+    ////////////////////////////////////////////    ON MOUSE DOWN ////////////////////////////////
     private void OnMouseDown() {
         arrow.SetActive(false);
         if(canClick){
             StartCoroutine("RollTheDice");
         }    
     }
+    ////////////////////////////////////////////    ROLLING DICE    ///////////////////////////
     private IEnumerator RollTheDice(){
+        last_tour = couleur_state;
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(4,6);
+            randomDiceSide = Random.Range(0,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);
@@ -93,9 +103,14 @@ public class Dice : MonoBehaviour
 
         finalSide = randomDiceSide + 1;
         result = finalSide;
-        canClick = false;
-        Pions.canMove = true;
-        arrow.SetActive(false);
+        if(result != 6){
+            canClick = false;
+            Pions.canMove = true;
+            arrow.SetActive(false);
+        }
+        else{
+            six++;
+        }
         
 
         
@@ -113,8 +128,8 @@ public class Dice : MonoBehaviour
                         }
                     }
                     
-                    
-                if((Pions.Vout == 0  || !Pions.Vhome) && result != 6 ){
+                
+                if((Pions.Vout == 0  || !Pions.Vhome) && (result != 6 && six ==0)){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
@@ -137,7 +152,7 @@ public class Dice : MonoBehaviour
                      }
                 }
                 
-                if((Pions.Jout == 0 || !Pions.Jhome )&& result != 6 ){
+                if((Pions.Jout == 0 || !Pions.Jhome )&& (result != 6 && six ==0) ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
@@ -158,7 +173,7 @@ public class Dice : MonoBehaviour
                          break;
                      }
                 }
-                if((Pions.Rout == 0 || !Pions.Rhome )&& result != 6 ){
+                if((Pions.Rout == 0 || !Pions.Rhome )&& (result != 6 && six ==0) ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
@@ -179,12 +194,16 @@ public class Dice : MonoBehaviour
                          break;
                      }
                 }
-                if((Pions.Bout == 0 || !Pions.Bhome )&& result != 6 ){
+                if((Pions.Bout == 0 || !Pions.Bhome )&& (result != 6 && six ==0) ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
                 }
             break;
+        }
+
+        if(last_tour != couleur_state){
+            six = 0;
         }
 
 
