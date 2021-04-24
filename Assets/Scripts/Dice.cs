@@ -26,6 +26,11 @@ public class Dice : MonoBehaviour
     public GameObject arrow;
     public int curseur;
     public static int six;
+    public bool V_free;
+    public bool J_free;
+    public bool R_free;
+    public bool B_free;
+
 
 
     public enum COULEUR_STATE{
@@ -50,14 +55,18 @@ public class Dice : MonoBehaviour
 
         VertBlock = false;
         JauneBlock = false;
-        RougeBlock = false;
-        BleuBlock = false;
+        //RougeBlock = false;
+        //BleuBlock = false;
 
         //VertBlock = true;
         //JauneBlock = true;
-        //RougeBlock = true;
-        //BleuBlock = true;
+        RougeBlock = true;
+        BleuBlock = true;
         
+        V_free = true;
+        J_free = true;
+        R_free = true;
+        B_free = true;
     }
     /////////////////////////////////////////   UPDATE     /////////////////////////////
     void Update(){
@@ -95,7 +104,7 @@ public class Dice : MonoBehaviour
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(0,6);
+            randomDiceSide = Random.Range(3,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);
@@ -127,14 +136,25 @@ public class Dice : MonoBehaviour
                             break;
                         }
                     }
+                     V_free = false;
+                    for(int i = 0 ; i < 4 ; i++){
+                        currentPion = Pions.VERT.transform.GetChild(i);
+                        if(!currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            V_free = true;
+
+                            break;
+                        }
+                    }
                     
+               
                 
-                if((Pions.Vout == 0  || !Pions.Vhome) && (result != 6 && six ==0)){
+                if((!V_free || Pions.Vout == 0  || !Pions.Vhome) && (result != 6 && six ==0)){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
-                }
 
+                }
+                
             break;
             case COULEUR_STATE.JAUNE:
             Pions.Jhome = false;
@@ -151,11 +171,21 @@ public class Dice : MonoBehaviour
                          break;
                      }
                 }
+                    J_free = false;
+                    for(int i = 0 ; i < 4 ; i++){
+                        currentPion = Pions.JAUNE.transform.GetChild(i);
+                        if(!currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            J_free = true;
+                            break;
+                        }
+                    }
+
                 
-                if((Pions.Jout == 0 || !Pions.Jhome )&& (result != 6 && six ==0) ){
+                if((!J_free || Pions.Jout == 0 || !Pions.Jhome )&& (result != 6 && six ==0) ){
                     updateTour();
                     canClick = true;
                     Pions.canMove = false;
+
                 }
             break;
             case COULEUR_STATE.ROUGE:

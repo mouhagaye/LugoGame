@@ -216,17 +216,18 @@ public class Pions : MonoBehaviour
         
         // 
         updateTour();
+        // Debug.Log("Vout : "+Vout+", Jout: "+Jout);
+        // Debug.Log("Vhome : "+Vhome+", Jhome: "+Jhome);
     }
     //////////////////////////////////////////////// ON MOUSE DOWN  ///////////////////////////
     private void OnMouseDown(){
-        
         if(isOut){
             barrageIndex = currentIndex;
             switch(pionCouleur){
                 case COULEUR.VERT:
                     for(int i = 0; i <= Dice.result; i++ ){
                         if(barrageIndex == 11 || barrageIndex == 30 || barrageIndex == 49){
-                            barrageIndex += 7;
+                            DbarrageIndex += 7;
                            
                         }
                         barrageIndex = barrageIndex + i;
@@ -245,7 +246,7 @@ public class Pions : MonoBehaviour
                 case COULEUR.JAUNE:
                     for(int i = 0; i <= Dice.result; i++ ){
                         if(barrageIndex == 11 || barrageIndex == 30 || barrageIndex == 68){
-                            barrageIndex += 7;
+                            DbarrageIndex += 7;
                            
                         }
                         barrageIndex = barrageIndex + i;
@@ -264,7 +265,7 @@ public class Pions : MonoBehaviour
                 case COULEUR.BLEU:
                     for(int i = 0; i <= Dice.result; i++ ){
                         if(barrageIndex == 11 || barrageIndex == 49 || barrageIndex == 68){
-                            barrageIndex += 7;
+                            DbarrageIndex += 7;
                            
                         }
                         barrageIndex = barrageIndex + i;
@@ -283,7 +284,7 @@ public class Pions : MonoBehaviour
                 case COULEUR.ROUGE:
                     for(int i = 0; i <= Dice.result; i++ ){
                         if(barrageIndex == 68 || barrageIndex == 30 || barrageIndex == 49){
-                            barrageIndex += 7;
+                            DbarrageIndex += 7;
                            
                         }
                         barrageIndex = barrageIndex + i;
@@ -320,7 +321,6 @@ public class Pions : MonoBehaviour
          if(!isOut && Dice.six != 0 && !catched){
                 isOut = true;
                 Dice.six--;
-
                  switch (pionCouleur)
                 {
                     case COULEUR.VERT:
@@ -329,12 +329,7 @@ public class Pions : MonoBehaviour
                             Vin = Vin - 1;
                             points.transform.GetChild(Vinitial).GetComponent<Points>().V_actuel++;
                             Pout = Vout;
-                            BarrageBlock = false;
-
-
-
-                        
-                        
+                                        
                         break;
                     case COULEUR.JAUNE:
                         currentIndex = Jinitial;
@@ -363,7 +358,7 @@ public class Pions : MonoBehaviour
                         break;
                 }
                 catchPion();
-                if(Pout > 1 || Dice.six == 1){
+                if(Pout > 1 || Dice.six >= 1){
                     debutCase = true;
 
                 }
