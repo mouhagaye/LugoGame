@@ -7,7 +7,7 @@ public class Pions : MonoBehaviour
     public GameObject points;
     private int[] pointsIndex = new int[76];
     
-    private int nextIndex = 0;
+    public int nextIndex = 0;
     private int i;
     public int currentIndex;
     public int departIndex;
@@ -93,7 +93,7 @@ public class Pions : MonoBehaviour
 
     public bool HomeTrigger;
     public bool debutCase;
-    public int barrageIndex;
+    private int barrageIndex;
 
      
 
@@ -227,102 +227,107 @@ public class Pions : MonoBehaviour
             switch(pionCouleur){
                 case COULEUR.VERT:
                     for(int i = 0; i <= Dice.result; i++ ){
-                        if(barrageIndex == 11 || barrageIndex == 30 || barrageIndex == 49){
-                            barrageIndex += 7;
+                        
+                        if(barrageIndex == 12 || barrageIndex == 31 || barrageIndex == 50){
+                            barrageIndex += 6;
                            
                         }
+                        barrageIndex = (barrageIndex + i)%76;
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().J_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
+                        if (points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().R_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
                         
-                        barrageIndex = barrageIndex + i;
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().J_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        if (points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().R_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().B_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
                         
                     }
                 break;
                 
                 case COULEUR.JAUNE:
                     for(int i = 0; i <= Dice.result; i++ ){
-                         if(barrageIndex == 11 || barrageIndex == 30 || barrageIndex == 68){
-                            barrageIndex += 7;
+                        if(barrageIndex == 12 || barrageIndex == 31 || barrageIndex == 69){
+                            barrageIndex += 6;
                            
                         }
                         
-                        barrageIndex = barrageIndex + i;
+                        barrageIndex = (barrageIndex + i)%76;
 
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().V_actuel >=  2){
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().V_actuel >=  2){
                             BarrageBlock = true;
                             break;
                         }
-                        if (points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().R_actuel >=  2){
+                        if (points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().R_actuel >=  2){
                             BarrageBlock = true;
                             break;
                         }
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().B_actuel >=  2){
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
                             BarrageBlock = true;
                             break;
                         }
-                       
+                        
                     }
                 break;
                 case COULEUR.BLEU:
                     for(int i = 0; i <= Dice.result; i++ ){
+                        
+                        barrageIndex = (barrageIndex + i)%76;
+
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().V_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
+                        if (points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().R_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().J_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
                         if(barrageIndex == 11 || barrageIndex == 49 || barrageIndex == 68){
                             barrageIndex += 7;
                            
                         }
-                        
-                        barrageIndex = barrageIndex + i;
-
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().V_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        if (points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().R_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().J_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        
                     }
                 break;
                 case COULEUR.ROUGE:
                     for(int i = 0; i <= Dice.result; i++ ){
+                        
+                        barrageIndex = (barrageIndex + i)%76;
+
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().V_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
+                        if (points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().J_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
+                        if(points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
+                            BarrageBlock = true;
+                            break;
+                        }
                         if(barrageIndex == 68 || barrageIndex == 30 || barrageIndex == 49){
                             barrageIndex += 7;
                            
                         }
-                        
-                        barrageIndex = barrageIndex + i;
-
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().V_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        if (points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().J_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        if(points.transform.GetChild((barrageIndex)%76).gameObject.GetComponent<Points>().B_actuel >=  2){
-                            BarrageBlock = true;
-                            break;
-                        }
-                        
                     }
                 break;
             }
         }
+        // if(BarrageBlock){
+        //     Debug.Log("barrage detecte");
+
+        // }
+        // Debug.Log("barrageIndex :"+barrageIndex+", Dice.result :"+Dice.result);
+
         if(Dice.six >= 2 && BarrageBlock == true){
             Dice.six = Dice.six - 2;
             BarrageBlock = false;
@@ -625,7 +630,6 @@ public class Pions : MonoBehaviour
         }
 
         destination.GetComponent<Points>().barrageCheck(transform.gameObject);
-        barrageIndex = currentIndex;
 
 
     }
