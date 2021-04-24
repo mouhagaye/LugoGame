@@ -50,13 +50,13 @@ public class Dice : MonoBehaviour
 
         VertBlock = false;
         JauneBlock = false;
-        //RougeBlock = false;
-        //BleuBlock = false;
+        RougeBlock = false;
+        BleuBlock = false;
 
         //VertBlock = true;
         //JauneBlock = true;
-        RougeBlock = true;
-        BleuBlock = true;
+        //RougeBlock = true;
+        //BleuBlock = true;
         
     }
     /////////////////////////////////////////   UPDATE     /////////////////////////////
@@ -95,7 +95,7 @@ public class Dice : MonoBehaviour
 
         for(int i=0; i <= 20; i++){
 
-            randomDiceSide = Random.Range(4,6);
+            randomDiceSide = Random.Range(0,6);
             rend.sprite = diceSides[randomDiceSide];
 
             yield return new WaitForSeconds(0.05f);
