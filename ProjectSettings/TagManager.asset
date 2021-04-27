@@ -15,6 +15,7 @@ TagManager:
   - BLEU
   - arrow
   - points
+  - Dice
   layers:
   - Default
   - TransparentFX

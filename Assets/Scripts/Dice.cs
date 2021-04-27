@@ -26,10 +26,10 @@ public class Dice : MonoBehaviour
     public GameObject arrow;
     public int curseur;
     public static int six;
-    public bool V_free;
-    public bool J_free;
-    public bool R_free;
-    public bool B_free;
+    public static bool V_free;
+    public static bool J_free;
+    public static bool R_free;
+    public static bool B_free;
 
     public int V_blocked;
     public int J_blocked;
@@ -67,8 +67,8 @@ public class Dice : MonoBehaviour
 
         //VertBlock = true;
         //JauneBlock = true;
-        //RougeBlock = true;
-        //BleuBlock = true;
+        RougeBlock = true;
+        BleuBlock = true;
         
         V_free = true;
         J_free = true;
@@ -114,7 +114,7 @@ public class Dice : MonoBehaviour
     ////////////////////////////////////////////    ROLLING DICE    ///////////////////////////
     private IEnumerator RollTheDice(){
         last_tour = couleur_state;
-
+        result = 0;
         for(int i=0; i <= 20; i++){
 
             randomDiceSide = Random.Range(minDice,maxDice);
@@ -135,166 +135,10 @@ public class Dice : MonoBehaviour
         }
         
         barrer();
-        
+        CheckTour();
         // Debug.Log(couleur_state);
 
-        switch(couleur_state){
-            case COULEUR_STATE.VERT:
-
-                 Pions.Vhome = false;
-                    for(int i = 0 ; i < 4 ; i++){
-                        currentPion = Pions.VERT.transform.GetChild(i);
-                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
-                            Pions.Vhome = true;
-                            break;
-                        }
-                    }
-
-                V_free = false;
-
-                    for(int i = 0 ; i < 4 ; i++){
-                        
-                        currentPion = Pions.VERT.transform.GetChild(i);
-                        if(Pions.Vout != 0 && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
-                            V_free = true;
-
-                            break;
-                        }
-                    }
-                    if(Pions.Vout == 0){
-                        V_free = true;
-                    }
-                    
-                    
-                    
-               
-                
-                 if((!V_free || Pions.Vout == 0  || !Pions.Vhome) &&six ==0){
-
-                    updateTour();
-                    canClick = true;
-                    Pions.canMove = false;
-
-                }
-                
-            break;
-            case COULEUR_STATE.JAUNE:
-            Pions.Jhome = false;
-              for(int i = 0 ; i < 4 ; i++){
-                    currentPion = Pions.JAUNE.transform.GetChild(i);
-                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 56){
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57;
-                    }
-                    else{
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 56 + 75;
-                    }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
-                         Pions.Jhome = true;
-                            break;
-                     }
-                     }
-
-                    J_free = false;
-
-                    for(int i = 0 ; i < 4 ; i++){
-                        
-                        currentPion = Pions.JAUNE.transform.GetChild(i);
-                        if(Pions.Jout != 0 && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
-                            J_free = true;
-
-                            break;
-                        }
-                    }
-                    if(Pions.Jout == 0){
-                        J_free = true;
-                    }
-
-                if((!J_free || Pions.Jout == 0  || !Pions.Jhome) &&six ==0){
-
-                    updateTour();
-                    canClick = true;
-                    Pions.canMove = false;
-
-                }
-            break;
-            case COULEUR_STATE.ROUGE:
-            Pions.Rhome = false;
-              for(int i = 0 ; i < 4 ; i++){
-                    currentPion = Pions.ROUGE.transform.GetChild(i);
-                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 18){
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19;
-                    }
-                    else{
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 18 + 75;
-                    }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
-                         Pions.Rhome = true;
-                         break;
-                     }
-                }
-                R_free = false;
-
-                    for(int i = 0 ; i < 4 ; i++){
-                        
-                        currentPion = Pions.ROUGE.transform.GetChild(i);
-                        if(Pions.Rout != 0 && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
-                            R_free = true;
-
-                            break;
-                        }
-                    }
-                    if(Pions.Rout == 0){
-                        R_free = true;
-                    }
-
-                if((!R_free || Pions.Rout == 0  || !Pions.Rhome) &&six ==0){
-
-                    updateTour();
-                    canClick = true;
-                    Pions.canMove = false;
-
-                }
-            break;
-             case COULEUR_STATE.BLEU:
-                Pions.Bhome = false;
-              for(int i = 0 ; i < 4 ; i++){
-                    currentPion = Pions.BLEU.transform.GetChild(i);
-                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 37){
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38;
-                    }
-                    else{
-                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 37 + 75;
-                    }
-                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
-                         Pions.Bhome = true;
-                         break;
-                     }
-                }
-                B_free = false;
-
-                    for(int i = 0 ; i < 4 ; i++){
-                        
-                        currentPion = Pions.BLEU.transform.GetChild(i);
-                        if(Pions.Bout != 0 && !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
-                            B_free = true;
-
-                            break;
-                        }
-                    }
-                    if(Pions.Bout == 0){
-                        B_free = true;
-                    }
-
-                if((!B_free || Pions.Bout == 0  || !Pions.Bhome) &&six ==0){
-
-                    updateTour();
-                    canClick = true;
-                    Pions.canMove = false;
-
-                }
-            break;
-        }
-
+        
         if(last_tour != couleur_state){
             six = 0;
         }
@@ -369,11 +213,11 @@ public class Dice : MonoBehaviour
     }
     public void barrer(){
         for( int j = 0; j < 4;j++){
-            
             switch (couleur_state){
                 case COULEUR_STATE.VERT:    
                     currentPion = Pions.VERT.transform.GetChild(j);    
                     currentPion.gameObject.GetComponent<Pions>().BarrageBlock = false;
+                    
                     if(currentPion.gameObject.GetComponent<Pions>().isOut){
                         barrageIndex = currentPion.gameObject.GetComponent<Pions>().currentIndex;
                             
@@ -505,6 +349,165 @@ public class Dice : MonoBehaviour
                     }
                     break;                     
                 }
+        }
+
+    }
+    public void CheckTour(){
+        switch(couleur_state){
+            case COULEUR_STATE.VERT:
+
+                 Pions.Vhome = false;
+                    for(int i = 0 ; i < 4 ; i++){
+                        currentPion = Pions.VERT.transform.GetChild(i);
+                        if(currentPion.gameObject.GetComponent<Pions>().currentIndex + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            Pions.Vhome = true;
+                            break;
+                        }
+                    }
+
+                V_free = false;
+
+                    for(int i = 0 ; i < 4 ; i++){
+                        
+                        currentPion = Pions.VERT.transform.GetChild(i);
+                        if(Pions.Vout != 0 && !currentPion.gameObject.GetComponent<Pions>().catched && !currentPion.gameObject.GetComponent<Pions>().catched &&  !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            V_free = true;
+
+                            break;
+                        }
+                    }
+                    if(Pions.Vout == 0){
+                        V_free = true;
+                    }
+                    
+                    
+                    
+               
+                
+                 if(Pions.Verts==0 || ((!V_free || Pions.Vout == 0  || !Pions.Vhome) &&six ==0)){
+
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+
+                }
+                
+            break;
+            case COULEUR_STATE.JAUNE:
+            Pions.Jhome = false;
+              for(int i = 0 ; i < 4 ; i++){
+                    currentPion = Pions.JAUNE.transform.GetChild(i);
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 56){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 57;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 56 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                         Pions.Jhome = true;
+                            break;
+                     }
+                     }
+
+                    J_free = false;
+
+                    for(int i = 0 ; i < 4 ; i++){
+                        
+                        currentPion = Pions.JAUNE.transform.GetChild(i);
+                        if(Pions.Jout != 0 && !currentPion.gameObject.GetComponent<Pions>().catched &&  !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            J_free = true;
+
+                            break;
+                        }
+                    }
+                    if(Pions.Jout == 0){
+                        J_free = true;
+                    }
+
+                if(Pions.Jaunes == 0 || ((!J_free || Pions.Jout == 0  || !Pions.Jhome) &&six ==0)){
+
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+
+                }
+            break;
+            case COULEUR_STATE.ROUGE:
+            Pions.Rhome = false;
+              for(int i = 0 ; i < 4 ; i++){
+                    currentPion = Pions.ROUGE.transform.GetChild(i);
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 18){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 19;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 18 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                         Pions.Rhome = true;
+                         break;
+                     }
+                }
+                R_free = false;
+
+                    for(int i = 0 ; i < 4 ; i++){
+                        
+                        currentPion = Pions.ROUGE.transform.GetChild(i);
+                        if(Pions.Rout != 0 && !currentPion.gameObject.GetComponent<Pions>().catched && !currentPion.gameObject.GetComponent<Pions>().catched &&  !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            R_free = true;
+
+                            break;
+                        }
+                    }
+                    if(Pions.Rout == 0){
+                        R_free = true;
+                    }
+
+                if(Pions.Rouges == 0 || ((!R_free || Pions.Rout == 0  || !Pions.Rhome) &&six ==0)){
+
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+
+                }
+            break;
+             case COULEUR_STATE.BLEU:
+                Pions.Bhome = false;
+              for(int i = 0 ; i < 4 ; i++){
+                    currentPion = Pions.BLEU.transform.GetChild(i);
+                    if(currentPion.gameObject.GetComponent<Pions>().currentIndex > 37){
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 38;
+                    }
+                    else{
+                        index = currentPion.gameObject.GetComponent<Pions>().currentIndex - 37 + 75;
+                    }
+                     if(index + result < 75 && currentPion.gameObject.GetComponent<Pions>().isOut){
+                         Pions.Bhome = true;
+                         break;
+                     }
+                }
+                B_free = false;
+
+                    for(int i = 0 ; i < 4 ; i++){
+                        
+                        currentPion = Pions.BLEU.transform.GetChild(i);
+                        if(Pions.Bout != 0 && !currentPion.gameObject.GetComponent<Pions>().catched &&  !currentPion.gameObject.GetComponent<Pions>().BarrageBlock && currentPion.gameObject.GetComponent<Pions>().isOut){
+                            B_free = true;
+
+                            break;
+                        }
+                    }
+                    if(Pions.Bout == 0){
+                        B_free = true;
+                    }
+
+                if(Pions.Bleus == 0 || ((!B_free || Pions.Bout == 0  || !Pions.Bhome) &&six ==0)){
+
+                    updateTour();
+                    canClick = true;
+                    Pions.canMove = false;
+
+                }
+            break;
         }
 
     }
