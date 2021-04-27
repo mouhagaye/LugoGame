@@ -100,10 +100,10 @@ public class Pions : MonoBehaviour
     public bool HomeTrigger;
     public bool debutCase;
     private SpriteRenderer sprite;
-    // public static int barrageIndex;
+    public int barrageIndex;
     public static bool Phome;
     public static bool P_free; 
-
+    public bool dontRun;
 
      
 
@@ -258,7 +258,7 @@ public class Pions : MonoBehaviour
             BarrageBlock = false;
 
         }
-        if (currentTour == pionCouleur && canMove && (!HomeTrigger) && !block && !BarrageBlock){
+        if (currentTour == pionCouleur && canMove && (!HomeTrigger) && !block && !BarrageBlock && !dontRun){
             StartCoroutine("Move");
         }
       
@@ -334,7 +334,7 @@ public class Pions : MonoBehaviour
                 catchPion();
                 superposition();
                 sprite.sortingOrder = 0;
-               departIndex = currentIndex;
+                departIndex = currentIndex;
                 dice.GetComponent<Dice>().CheckTour();
 
             }
@@ -434,8 +434,16 @@ public class Pions : MonoBehaviour
             }
             else{
             if(Dice.six > 0){
-                distance = 6;
-                Dice.six--;
+                
+                if(!dontRun){
+                    distance = 6;
+                    Dice.six--;
+                }
+                else{
+                    yield return new WaitForSeconds(0.0f);
+                }
+                //dontRun = false;
+                
             }
             else{
                 distance = Dice.result;
@@ -561,15 +569,23 @@ public class Pions : MonoBehaviour
          for(int j = 0 ; j < 4 ; j++){
                 currentPion = VERT.transform.GetChild(j);
                 currentPion.gameObject.GetComponent<Pions>().block = false;
+                currentPion.gameObject.GetComponent<Pions>().dontRun = false;
+
 
                 currentPion = JAUNE.transform.GetChild(j);
                 currentPion.gameObject.GetComponent<Pions>().block = false;
+                currentPion.gameObject.GetComponent<Pions>().dontRun = false;
+
 
                 currentPion = BLEU.transform.GetChild(j);
                 currentPion.gameObject.GetComponent<Pions>().block = false;
+                currentPion.gameObject.GetComponent<Pions>().dontRun = false;
+
 
                 currentPion = ROUGE.transform.GetChild(j);
                 currentPion.gameObject.GetComponent<Pions>().block = false;
+                currentPion.gameObject.GetComponent<Pions>().dontRun = false;
+
                  
         }
         
@@ -592,6 +608,132 @@ public class Pions : MonoBehaviour
 
         destination.GetComponent<Points>().barrageCheck(transform.gameObject);
         sprite.sortingOrder = 0;
+
+        barrageIndex = currentIndex;
+
+        switch (pionCouleur){
+            case COULEUR.VERT:
+            if((Vin > 0 || V_catched > 0)){    
+                    for(int i = 0; i <= (6 + Dice.result); i++ ){
+
+                        if(barrageIndex == 12 || barrageIndex == 31 || barrageIndex == 50){
+                            barrageIndex += 6;
+                        
+                        }
+                        
+
+                        barrageIndex = barrageIndex %76;
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().J_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if (Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().R_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        barrageIndex++;
+                        
+                    }
+                }
+            
+            break;
+            case COULEUR.JAUNE:    
+                if((Jin > 0 || J_catched > 0)){    
+                    
+                    for(int i = 0; i <= (6 + Dice.result); i++ ){
+
+                        if(barrageIndex == 12 || barrageIndex == 31 || barrageIndex == 69){
+                            barrageIndex += 6;
+                        
+                        }
+                        
+
+                        barrageIndex = barrageIndex %76;
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().V_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if (Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().R_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        barrageIndex++;
+                        
+                    }
+                    Debug.Log("barrageIndex :"+barrageIndex);
+
+                }
+            break;
+            case COULEUR.BLEU:    
+                if(Bout == 0 && (Bin > 0 || B_catched > 0)){    
+                
+                    for(int i = 0; i <= (6 + Dice.result); i++ ){
+
+                        if(barrageIndex == 12 || barrageIndex == 50 || barrageIndex == 69){
+                            barrageIndex += 6;
+                        
+                        }
+                        
+
+                        barrageIndex = barrageIndex %76;
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().V_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if (Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().R_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().J_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        barrageIndex++;
+                        
+                    }
+                }
+            
+            break;           
+
+            case COULEUR.ROUGE:
+                if(Rout == 0 && (Rin > 0 || R_catched > 0)){    
+                
+                    for(int i = 0; i <= (6 +Dice.result); i++ ){
+
+                        if(barrageIndex == 50 || barrageIndex == 31 || barrageIndex == 69){
+                            barrageIndex += 6;
+                        
+                        }
+                        
+
+                        barrageIndex = barrageIndex %76;
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().V_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if (Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().J_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
+                            dontRun = true;
+                            break;
+                        }
+                        barrageIndex++;
+                        
+                    }
+                }
+            
+            break;                     
+        }
 
 
     }
