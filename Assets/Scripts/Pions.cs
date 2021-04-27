@@ -335,14 +335,8 @@ public class Pions : MonoBehaviour
                 superposition();
                 sprite.sortingOrder = 0;
                departIndex = currentIndex;
-            //    if(Dice.six== 0 && (Pout == 0 || !Phome || !P_free)){
-            //         Dice.updateTour();
-            //         Dice.canClick = true;
-            //         canMove = false;
-            //     }
                 dice.GetComponent<Dice>().CheckTour();
 
-                Debug.Log("Pout= ;"+Pout+" Phome :"+Phome+", P_free :"+P_free);
             }
         
         if(catched && Dice.six != 0){
@@ -392,7 +386,7 @@ public class Pions : MonoBehaviour
                 
                 yield return new WaitForSeconds(0.1f);
 
-                                dice.GetComponent<Dice>().CheckTour();
+                dice.GetComponent<Dice>().CheckTour();
 
 
             }
@@ -520,6 +514,7 @@ public class Pions : MonoBehaviour
                 superposition();
                 dice.GetComponent<Dice>().barrer();
 
+
                 
 
 
@@ -597,6 +592,7 @@ public class Pions : MonoBehaviour
 
         destination.GetComponent<Points>().barrageCheck(transform.gameObject);
         sprite.sortingOrder = 0;
+
 
     }
     ///////////////////////////////// UPDATE TOUR /////////////////////////////////
