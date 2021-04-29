@@ -14,10 +14,10 @@ public class Dice : MonoBehaviour
     public static bool canClick;
     public static bool FinPartie;
 
-    public static bool VertBlock;
-    public static bool JauneBlock;
-    public static bool BleuBlock;
-    public static bool RougeBlock;
+    public bool VertBlock;
+    public bool JauneBlock;
+    public bool BleuBlock;
+    public bool RougeBlock;
 
     public int randomDiceSide = 0;
     public int finalSide = 0;
@@ -65,10 +65,10 @@ public class Dice : MonoBehaviour
         RougeBlock = false;
         BleuBlock = false;
 
-        //VertBlock = true;
-        //JauneBlock = true;
-        RougeBlock = true;
-        BleuBlock = true;
+        // VertBlock = true;
+        // JauneBlock = true;
+        // RougeBlock = true;
+        // BleuBlock = true;
         
         V_free = true;
         J_free = true;
@@ -147,7 +147,7 @@ public class Dice : MonoBehaviour
     }
 
     // Update is called once per frame
-    public static void updateTour(){
+    public void updateTour(){
         switch (couleur_state)
             {
                 case COULEUR_STATE.VERT:
