@@ -27,7 +27,7 @@ public class Pions : MonoBehaviour
     public bool isHoming;
     public bool catched;
     public bool beginning;
-    public int Pout;
+    public static int Pout;
 
 
     public static GameObject VERT;
@@ -53,6 +53,7 @@ public class Pions : MonoBehaviour
     public int Jindex;
     public int Bindex;
     public int Rindex;
+    public bool walking;
 
 
 
@@ -104,6 +105,7 @@ public class Pions : MonoBehaviour
     public static bool Phome;
     public static bool P_free; 
     public bool dontRun;
+    public static int Pin;
 
      
 
@@ -250,6 +252,8 @@ public class Pions : MonoBehaviour
     }
     //////////////////////////////////////////////// ON MOUSE DOWN  ///////////////////////////
     private void OnMouseDown(){
+        BarrageBlock = false;
+        dice.GetComponent<Dice>().barrer();
 
         if(Dice.six >= 2 && BarrageBlock == true){
             Dice.six = Dice.six - 2;
@@ -261,6 +265,7 @@ public class Pions : MonoBehaviour
             
             runcheck();
         }
+        
 
         if (currentTour == pionCouleur && canMove && (!HomeTrigger) && !block && !BarrageBlock && !dontRun){
             StartCoroutine("Move");
@@ -271,56 +276,105 @@ public class Pions : MonoBehaviour
     IEnumerator Move(){
         debutCase = false;
         sprite.sortingOrder = 1;
+        switch(pionCouleur){
+            case COULEUR.VERT:
+                Pout = Vout;
+                P_free = Dice.V_free;
+                Phome = Vhome;
+                Pin = Vin;
+            break;
+            case COULEUR.JAUNE:
+                Pout = Jout;
+                P_free = Dice.J_free;
+                Phome = Jhome;
+                Pin = Jin;
+            break;
+            case COULEUR.ROUGE:
+                Pout = Rout;
+                P_free = Dice.R_free;
+                Phome = Rhome;
+                Pin = Rin;
+            break;
+            case COULEUR.BLEU:
+                Pout = Bout;
+                P_free = Dice.B_free;
+                Phome = Bhome;
+                Pin = Bin;
+            break;
+        }
 
          if(!isOut && Dice.six != 0 && !catched){
+            //  switch(pionCouleur){
+            //      case COULEUR.VERT:
+            //         if(Pions.points.transform.GetChild(Vinitial).gameObject.GetComponent<Points>().R_actuel)
+            //      break;
+            //      case COULEUR.JAUNE:
+            //         currentIndex = Jinitial;
+            //      break;
+            //      case COULEUR.ROUGE:
+            //         currentIndex = Rinitial;
+            //      break;
+            //      case COULEUR.BLEU:
+            //         currentIndex = Binitial;
+            //      break;
+            //  }
                 isOut = true;
                 Dice.six--;
                  switch (pionCouleur)
                 {
                     case COULEUR.VERT:
-                            currentIndex = Vinitial;
-                            Vout++;
-                            Vin--;
-                            points.transform.GetChild(Vinitial).GetComponent<Points>().V_actuel++;
-                            Pout = Vout;
-                            P_free = Dice.V_free;
-                            Phome = Vhome;
-                                        
+
+                        currentIndex = Vinitial;
+                        Vout++;
+                        Vin--;
+                        points.transform.GetChild(Vinitial).GetComponent<Points>().V_actuel++;
+                        Pout = Vout;
+                        P_free = Dice.V_free;
+                        Phome = Vhome;
+                        Pin = Vin;               
                         break;
+
                     case COULEUR.JAUNE:
                         currentIndex = Jinitial;
-                            Jout++;
-                            Jin--;
-                            points.transform.GetChild(Jinitial).GetComponent<Points>().J_actuel++;
-                            Pout = Jout;
-                            P_free = Dice.J_free;
-                            Phome = Jhome;
-
+                        Jout++;
+                        Jin--;
+                        points.transform.GetChild(Jinitial).GetComponent<Points>().J_actuel++;
+                        Pout = Jout;
+                        P_free = Dice.J_free;
+                        Phome = Jhome;
+                        Pin = Jin;
                         break;
+
                     case COULEUR.ROUGE:
+
+                        Pout = Rout;
+                        P_free = Dice.R_free;
+                        Phome = Rhome;
+                        Pin = Rin;
                         currentIndex = Rinitial;
                         Rout++;
                         Rin--;
                         points.transform.GetChild(Rinitial).GetComponent<Points>().R_actuel++;
-                        Pout = Rout;
-                        P_free = Dice.R_free;
-                        Phome = Rhome;
 
 
                         break;
                     case COULEUR.BLEU:
+
                         currentIndex = Binitial;
-                            Bout++;
-                            Bin--;
-                            points.transform.GetChild(Binitial).GetComponent<Points>().B_actuel++;
-                            Pout = Bout;
-                            P_free = Dice.B_free;
-                            Phome = Bhome;
+                        Bout++;
+                        Bin--;
+                        points.transform.GetChild(Binitial).GetComponent<Points>().B_actuel++;
+                        Pout = Bout;
+                        P_free = Dice.B_free;
+                        Phome = Bhome;
+                        Pin = Bin;
 
                         break;
                 }
                 catchPion();
                 superposition();
+                dice.GetComponent<Dice>().barrer();
+                dice.GetComponent<Dice>().CheckTour();
 
                 if(Pout > 1 || Dice.six >= 1){
                     debutCase = true;
@@ -340,10 +394,12 @@ public class Pions : MonoBehaviour
                 sprite.sortingOrder = 0;
                 departIndex = currentIndex;
                 dice.GetComponent<Dice>().CheckTour();
+                Debug.Log(Pout);
 
             }
         
         if(catched && Dice.six != 0){
+            if((Dice.six == 1 && (!P_free || Pin == 0)) || Dice.six > 1){
                 Dice.six--;
                 catched = false;
                 isOut=false;
@@ -351,36 +407,24 @@ public class Pions : MonoBehaviour
                 
                 switch(pionCouleur){
                     case COULEUR.VERT:
-                        Pout = Vout;
-                        P_free = Dice.V_free;
-                        Phome = Vhome;
                         Vin++;
                         V_catched--;
                         currentIndex = Vinitial;
                         transform.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(max,min)/10, 0);
                     break;
                     case COULEUR.JAUNE:
-                        Pout = Jout;
-                        P_free = Dice.J_free;
-                        Phome = Jhome;
                         Jin++;
                         J_catched--;
                         currentIndex = Jinitial;
                         transform.position = new Vector3(Random.Range(-max,-min)/10 , Random.Range(-max,-min)/10, 0);
                     break;
                     case COULEUR.ROUGE:
-                        Pout = Rout;
-                        P_free = Dice.R_free;
-                        Phome = Rhome;
                         Rin++;
                         R_catched--;
                         currentIndex = Rinitial;
                         transform.position = new Vector3(Random.Range(max,min)/10 , Random.Range(max,min)/10, 0);
                     break;
                     case COULEUR.BLEU:
-                        Pout = Bout;
-                        P_free = Dice.B_free;
-                        Phome = Bhome;
                         Bin++;
                         B_catched--;
                         currentIndex = Binitial;
@@ -390,20 +434,25 @@ public class Pions : MonoBehaviour
                 
                 yield return new WaitForSeconds(0.1f);
 
-                //dice.GetComponent<Dice>().CheckTour();
-                if((Pout == 0 || !P_free || Phome)&&Dice.six == 0){
+                dice.GetComponent<Dice>().CheckTour();
+                if((Pout == 0 || !P_free || !Phome)&&Dice.six == 0){
                     dice.GetComponent<Dice>().updateTour();
                     Dice.canClick = true;
                     canMove = false;
                 }
 
-
             }
+            else{
+                block = true;
+                yield return new WaitForSeconds(0.1f);
+            }
+        }
         
         departIndex = currentIndex;
         ////////////////////////    IS OUT  //////////////////////////////
 
-        if(isOut && !debutCase && !dontRun){
+        if(isOut && !debutCase && !dontRun && !BarrageBlock){
+            dice.GetComponent<Dice>().barrer();
             transform.position = new Vector3(transform.position.x,transform.position.y,1.0f);
             if(isHoming && Dice.six > 0 ){
                 switch(pionCouleur){
@@ -520,9 +569,15 @@ public class Pions : MonoBehaviour
                 nextIndex = (currentIndex + i)%76;
                 destination = points.transform.GetChild(nextIndex);
                     while ((transform.position - destination.position).sqrMagnitude >= 0.001f) 
-                        {  
+                        {
                         transform.position = Vector2.MoveTowards(transform.position, destination.position, moveSpeed*Time.deltaTime ); 
                         
+                    }
+                    if(i < distance){
+                        walking = true;
+                    }
+                    else{
+                        walking = false;
                     }
                 yield return new WaitForSeconds(0.5f);
             }
@@ -531,7 +586,7 @@ public class Pions : MonoBehaviour
                 superposition();
                 dice.GetComponent<Dice>().barrer();
                 //runcheck();
-                if (Dice.six==0 && distance != 6){
+                if (Dice.six==0 && distance != 6 ){
                 dice.GetComponent<Dice>().updateTour();
                 Dice.canClick = true;
                 canMove = false;
@@ -600,23 +655,24 @@ public class Pions : MonoBehaviour
                  
         }
         
-        switch(pionCouleur)
-        {
-            case COULEUR.VERT:
-                points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
-                break;
-            case COULEUR.JAUNE:
-                points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
-                break;
-            case COULEUR.ROUGE:
-                points.transform.GetChild(departIndex).GetComponent<Points>().R_actuel--;
-                break;
-            case COULEUR.BLEU:
-                points.transform.GetChild(departIndex).GetComponent<Points>().B_actuel--;
-                break;
+        if(isOut){
+            switch(pionCouleur)
+            {
+                case COULEUR.VERT:
+                    points.transform.GetChild(departIndex).GetComponent<Points>().V_actuel--;
+                    break;
+                case COULEUR.JAUNE:
+                    points.transform.GetChild(departIndex).GetComponent<Points>().J_actuel--;
+                    break;
+                case COULEUR.ROUGE:
+                    points.transform.GetChild(departIndex).GetComponent<Points>().R_actuel--;
+                    break;
+                case COULEUR.BLEU:
+                    points.transform.GetChild(departIndex).GetComponent<Points>().B_actuel--;
+                    break;
 
+            }
         }
-
         destination.GetComponent<Points>().barrageCheck(transform.gameObject);
         sprite.sortingOrder = 0;
         //runcheck();
@@ -920,7 +976,7 @@ public class Pions : MonoBehaviour
     }
     public void runcheck(){
         barrageIndex = currentIndex;
-
+        if(Dice.six == 1 ){
         switch (pionCouleur){
             case COULEUR.VERT:
             if((Vin > 0 || V_catched > 0)){    
@@ -1043,6 +1099,7 @@ public class Pions : MonoBehaviour
             
             break;                     
         }
+    }
     }
     
 }
