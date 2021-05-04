@@ -102,6 +102,18 @@ public class Dice : MonoBehaviour
         }
         remain_six.text = "nbre de six :\n\t"+six.ToString();
         arrow.SetActive(canClick);
+        if(Pions.Verts == 0){
+            VertBlock = true;
+        }
+        if(Pions.Jaunes == 0){
+            JauneBlock = true;
+        }
+        if(Pions.Rouges == 0){
+            RougeBlock = true;
+        }
+        if(Pions.Bleus == 0){
+            BleuBlock = true;
+        }
         //Debug.Log(six);
     }
     ////////////////////////////////////////////    ON MOUSE DOWN ////////////////////////////////

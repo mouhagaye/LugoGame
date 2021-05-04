@@ -368,7 +368,7 @@ public class Pions : MonoBehaviour
                 }
                 catchPion();
                 superposition();
-                dice.GetComponent<Dice>().CheckTour();
+                //dice.GetComponent<Dice>().CheckTour();
 
                 if(Pout > 1 || Dice.six >= 1){
                     debutCase = true;
@@ -1024,6 +1024,9 @@ public class Pions : MonoBehaviour
                             dontRun = true;
                             break;
                         }
+                        if((currentIndex + 6 + Dice.result) > 75 ){
+                            dontRun = true;
+                        }
                         barrageIndex++;
                         
                     }
@@ -1053,6 +1056,9 @@ public class Pions : MonoBehaviour
                         if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
                             dontRun = true;
                             break;
+                        }
+                        if((currentIndex + 6 + Dice.result) > 55 && currentIndex < 57  ){
+                            dontRun = true;
                         }
                         barrageIndex++;
                         
@@ -1084,6 +1090,12 @@ public class Pions : MonoBehaviour
                             dontRun = true;
                             break;
                         }
+                        if((currentIndex + 6 + Dice.result) > 55 && currentIndex < 57  ){
+                            dontRun = true;
+                        }
+                        if((currentIndex + 6 + Dice.result) > 36 && currentIndex < 38  ){
+                            dontRun = true;
+                        }
                         barrageIndex++;
                         
                     }
@@ -1114,6 +1126,9 @@ public class Pions : MonoBehaviour
                         if(Pions.points.transform.GetChild(barrageIndex).gameObject.GetComponent<Points>().B_actuel >=  2){
                             dontRun = true;
                             break;
+                        }
+                        if((currentIndex + 6 + Dice.result) > 17 && currentIndex < 19  ){
+                            dontRun = true;
                         }
                         barrageIndex++;
                         
