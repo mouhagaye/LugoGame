@@ -378,7 +378,7 @@ public class Pions : MonoBehaviour
                 }
                 destination = points.transform.GetChild(currentIndex);
 
-                // destination.GetComponent<Points>().barrageCheck(transform.gameObject);
+                //destination.GetComponent<Points>().barrageCheck(transform.gameObject);
                 while ((transform.position - destination.position).sqrMagnitude >= 0.001f) 
                         {   
                         transform.position = Vector2.MoveTowards(transform.position, destination.position, moveSpeed*Time.deltaTime ); 

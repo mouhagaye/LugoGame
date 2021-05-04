@@ -13,7 +13,8 @@ public class Points : MonoBehaviour
     public int B_actuel;
 
     private Transform currentPion;
-
+    public GameObject point;
+    public int index;
 
     void Start()
     {
@@ -21,6 +22,14 @@ public class Points : MonoBehaviour
         J_actuel = 0;
         R_actuel = 0;
         B_actuel = 0;
+        point = GameObject.FindGameObjectWithTag("points");
+        for (int i = 0; i < 76; i++){
+            if(point.transform.GetChild(i).position == transform.position){
+                index = i;
+                break;
+            }
+        }
+
         
     }
     
@@ -32,41 +41,29 @@ public class Points : MonoBehaviour
         switch(currentPion.GetComponent<Pions>().pionCouleur){
             case Pions.COULEUR.VERT:
                 if(currentPion.GetComponent<Pions>().isOut){
-                    if((currentPion.transform.position - transform.position).sqrMagnitude <= 0.002f){
+                    if(currentPion.GetComponent<Pions>().currentIndex == index){
                         transform.GetComponent<Points>().V_actuel++;
-                    }
-                    else{
-                        transform.GetComponent<Points>().V_actuel--;
                     }
                 }
             break;
             case Pions.COULEUR.JAUNE:
                 if(currentPion.GetComponent<Pions>().isOut){
-                    if((currentPion.transform.position - transform.position).sqrMagnitude <= 0.002f){
+                    if(currentPion.GetComponent<Pions>().currentIndex == index){
                         transform.GetComponent<Points>().J_actuel++;
-                    }
-                    else{
-                        transform.GetComponent<Points>().J_actuel--;
                     }
                 }
             break;
             case Pions.COULEUR.BLEU:
                 if(currentPion.GetComponent<Pions>().isOut){
-                    if((currentPion.transform.position - transform.position).sqrMagnitude <= 0.002f){
+                    if(currentPion.GetComponent<Pions>().currentIndex == index){
                         transform.GetComponent<Points>().B_actuel++;
-                    }
-                    else{
-                        transform.GetComponent<Points>().B_actuel--;
                     }
                 }
             break;
             case Pions.COULEUR.ROUGE:
                 if(currentPion.GetComponent<Pions>().isOut){
-                    if((currentPion.transform.position - transform.position).sqrMagnitude <= 0.002f){
+                    if(currentPion.GetComponent<Pions>().currentIndex == index){
                         transform.GetComponent<Points>().R_actuel++;
-                    }
-                    else{
-                        transform.GetComponent<Points>().R_actuel--;
                     }
                 }
             break;
