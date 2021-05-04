@@ -108,8 +108,8 @@ public class Pions : MonoBehaviour
     public bool dontRun;
     public static int Pin;
     public static int P_blocked;
+    public Collider2D collider;
 
-     
 
     // Start is called before the first frame update
     void Start()
@@ -176,6 +176,7 @@ public class Pions : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         sprite.sortingOrder = 0;
         dice = GameObject.FindGameObjectWithTag("Dice");
+        collider = GetComponent<Collider2D>();
         
         
     }
@@ -275,6 +276,7 @@ public class Pions : MonoBehaviour
     /////////////////////////////////////////////////////   MOVE    ///////////////////////////////////
     IEnumerator Move(){
         debutCase = false;
+        collider.enabled = false;
         sprite.sortingOrder = 1;
         switch(pionCouleur){
             case COULEUR.VERT:
@@ -698,6 +700,7 @@ public class Pions : MonoBehaviour
         destination.GetComponent<Points>().barrageCheck(transform.gameObject);
         sprite.sortingOrder = 0;
         //runcheck();
+        collider.enabled = true;
         
 
 
