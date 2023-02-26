@@ -23,7 +23,7 @@ public class PawnUtils: MonoBehaviour
     {
         // Set color to pawn object and init all pawn attribute
         _pawnObject.SetPawnColor(pawnPawnColor);
-        _pawnCurrentCoordinate = _pawnObject.PawnInitialCase;
+        _pawnCurrentCoordinate = _pawnObject.pawnInitialCase;
         
         // TODO  this.GetComponent<Renderer>().material.color = _pawnObject.PawnPawnColorCode;
 
@@ -38,11 +38,18 @@ public class PawnUtils: MonoBehaviour
         // Get pawn run distance from dice.
         _pawnMoveDistance = Dice.DiceRealValue;
     }
-    
+
     // Called when mouse is down in Pawn game object.
     private void OnMouseDown(){
-        // StartCoroutine("Move");
+        // Move if current tour allowed it.
+        if (GameController.CurrentTurnColor == _pawnObject.currentPawnColor && !_pawnObject.pawnIsBlock)
+        {
             StartCoroutine(nameof(MovePawn));
+            if (Dice.DiceRealValue != 6)
+            {
+                GameController.UpdateTurn();
+            }
+        }
     }
     
     // Moving Pawn
@@ -51,14 +58,14 @@ public class PawnUtils: MonoBehaviour
         for (int i = 0; i <= _pawnMoveDistance; i++){
             
             // pawn's next index should be between 0 and board point count.
-            _pawnRunNextCoordinate = (_pawnCurrentCoordinate + i) % (_boardCaseCount - 1);
+            _pawnRunNextCoordinate = (_pawnCurrentCoordinate + i) % _boardCaseCount;
             
             // Jump by 5 case to avoid pawns run on disallowed case.
 
-            foreach (var unAllowedCoordination in _pawnObject.PawnUnAllowedCoordinates)
+            foreach (var unAllowedCoordination in _pawnObject.pawnUnAllowedCoordinates)
             {
                 if (_pawnRunNextCoordinate == unAllowedCoordination){
-                    _pawnCurrentCoordinate += 5;
+                    _pawnCurrentCoordinate += 6;
                 }
             }
             // Setting the destination case.

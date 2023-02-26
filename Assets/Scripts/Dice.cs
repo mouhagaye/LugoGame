@@ -13,6 +13,9 @@ public class Dice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize variable
+        sixCounts = 0;
+
         // Rendering Dice sprite with images front Asset
         _diceSpriteRenderer = GetComponent<SpriteRenderer>();
         _diceRenderedSide = Resources.LoadAll<Sprite>("Dice/");
@@ -43,10 +46,5 @@ public class Dice : MonoBehaviour
         if (DiceRealValue == 6) {
             sixCounts++;
         }
-    }
-
-    //  Management to turn which mean when to switch to a player or not.
-    public void turnUpdater()
-    {
     }
 }

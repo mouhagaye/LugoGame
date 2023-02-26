@@ -1,43 +1,50 @@
 
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace PawnNamespace
 { 
     // Setting All possible pawn's color.
     public enum PawnColor {Green, Yellow, Blue, Red}
     
-    public class Pawn
+    public class Pawn : MonoBehaviour
     {
         // Pawn attribute.
-        private PawnColor _currentPawnPawnColor;
-        public int[] PawnUnAllowedCoordinates = new int[3];
-        public int PawnInitialCase;
-        public Color PawnPawnColorCode;
-        public bool PawnIsOut;
+        public PawnColor currentPawnColor;
+        public int[] pawnUnAllowedCoordinates = new int[3];
+        public int pawnInitialCase;
+        public bool pawnIsBlock;
+        public bool pawnIsOut;
         
         // Set pawn color and Initialize Pawn Attribute according to Color.
         public void SetPawnColor(PawnColor newPawnColor){
-            this._currentPawnPawnColor = newPawnColor;
+            this.currentPawnColor = newPawnColor;
             this.InitPawn();
         }
         
         // Init Pawn
         public void InitPawn()
         {
-            switch (this._currentPawnPawnColor)
+            switch (this.currentPawnColor)
             {
                 case PawnColor.Green:
-                    this.PawnInitialCase = 0;
-                    this.PawnUnAllowedCoordinates = new int[] { 11, 29, 47 };
-                    this.PawnPawnColorCode = new Color(55, 111, 55);
+                    this.pawnInitialCase = 0;
+                    this.pawnUnAllowedCoordinates = new int[] { 11, 30, 49 };
                     break;
                 case PawnColor.Yellow:
-                    this.PawnInitialCase = 57;
-                    this.PawnUnAllowedCoordinates = new int[] { 11, 29, 47 };
-                    this.PawnPawnColorCode = new Color(195, 176, 0);
+                    this.pawnInitialCase = 57;
+                    this.pawnUnAllowedCoordinates = new int[] { 11, 30, 68 };
                     break;
             }
         }
 
+        private void Update()
+        {
+            if (GameController.CurrentTurnColor != this.currentPawnColor)
+            {
+                this.pawnIsBlock = true;
+            }
+        }
     }
 }

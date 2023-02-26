@@ -1,25 +1,37 @@
 using PawnNamespace;
+using UnityEditor;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
     // Pawn relative variable
-    public PawnColor currentTurnColor;
+    public static PawnColor CurrentTurnColor;
 
-    // Setting Pawn Object;
-    public GameObject[] greenPawn = new GameObject[4];
-    public GameObject[] yellowPawn = new GameObject[4];
-    public GameObject[] bluePawn = new GameObject[4];
-    public GameObject[] redPawn = new GameObject[4];
     // Start is called before the first frame update
     void Start()
     {
-       
+        CurrentTurnColor = PawnColor.Green;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // Debug
+        Debug.Log(CurrentTurnColor);
     }
+
+    public static void UpdateTurn()
+    {
+       switch (CurrentTurnColor)
+        {
+            case PawnColor.Green:
+                CurrentTurnColor = PawnColor.Yellow;
+                break;
+            case PawnColor.Yellow:
+                CurrentTurnColor = PawnColor.Green;
+                break;
+            
+        }
+    }
+
 }
