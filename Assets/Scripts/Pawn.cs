@@ -13,7 +13,7 @@ namespace PawnNamespace
         public int[] PawnUnAllowedCoordinates = new int[3];
         public int PawnInitialCase;
         public Color PawnPawnColorCode;
-        public bool pawnIsOut;
+        public bool PawnIsOut;
         
         // Set pawn color and Initialize Pawn Attribute according to Color.
         public void SetPawnColor(PawnColor newPawnColor){

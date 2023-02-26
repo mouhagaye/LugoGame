@@ -6,7 +6,7 @@ public class PawnUtils: MonoBehaviour
 {
     // Board Variables
     public GameObject boardCases;
-    private static readonly int _boardCaseCount = 72;
+    private static readonly int _boardCaseCount = 76;
     private readonly int[] _boardCasesCoordinates = new int[_boardCaseCount];
     
     // Pawn Variables
@@ -24,7 +24,8 @@ public class PawnUtils: MonoBehaviour
         // Set color to pawn object and init all pawn attribute
         _pawnObject.SetPawnColor(pawnPawnColor);
         _pawnCurrentCoordinate = _pawnObject.PawnInitialCase;
-        this.GetComponent<Renderer>().material.color = _pawnObject.PawnPawnColorCode;
+        
+        // TODO  this.GetComponent<Renderer>().material.color = _pawnObject.PawnPawnColorCode;
 
         for (int i = 0; i <= (_boardCaseCount - 1); i++){
             _boardCasesCoordinates[i] = i;

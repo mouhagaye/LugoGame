@@ -6,6 +6,7 @@ public class Dice : MonoBehaviour
     private Sprite[] _diceRenderedSide;
     private SpriteRenderer _diceSpriteRenderer;
     public static int DiceRealValue;
+    public static int sixCounts;
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +36,12 @@ public class Dice : MonoBehaviour
         // After rolling loop end return the last dice index and add 1 to get its value.
         // (Because index start with 0 and value start with 1)
         DiceRealValue = diceRandomSide + 1;
+        
+        // Check if result is six
+        if (DiceRealValue == 6)
+        {
+            
+        }
 
     }
 }
