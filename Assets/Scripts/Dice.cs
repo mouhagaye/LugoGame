@@ -1,13 +1,15 @@
 using System.Collections;
+using PawnNamespace;
 using UnityEngine;
 
 public class Dice : MonoBehaviour
 {
+    // Dice Variable
     private Sprite[] _diceRenderedSide;
     private SpriteRenderer _diceSpriteRenderer;
     public static int DiceRealValue;
     public static int sixCounts;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +40,13 @@ public class Dice : MonoBehaviour
         DiceRealValue = diceRandomSide + 1;
         
         // Check if result is six
-        if (DiceRealValue == 6)
-        {
-            
+        if (DiceRealValue == 6) {
+            sixCounts++;
         }
+    }
 
+    //  Management to turn which mean when to switch to a player or not.
+    public void turnUpdater()
+    {
     }
 }
