@@ -714,7 +714,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 1
+  pawnColor: 1
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &417490587
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1148,7 +1150,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 0
+  pawnColor: 0
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &734104750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1406,7 +1410,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 1
+  pawnColor: 1
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &876843293
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1725,7 +1731,7 @@ MonoBehaviour:
   - {fileID: 1219124298}
   - {fileID: 876843290}
   - {fileID: 1932134184}
-  pawnInt: 0
+  pawnsIn: 0
   pawnsOut: 0
 --- !u!4 &980579532
 Transform:
@@ -1923,7 +1929,7 @@ MonoBehaviour:
   - {fileID: 2077944546}
   - {fileID: 1404664526}
   - {fileID: 1879646368}
-  pawnInt: 0
+  pawnsIn: 0
   pawnsOut: 0
 --- !u!1 &1110937741
 GameObject:
@@ -2049,6 +2055,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 109a90045d0b73d40b5cf2af173764f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DiceMax: 6
+  DiceMin: 0
 --- !u!61 &1171265658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2223,7 +2231,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 1
+  pawnColor: 1
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &1219124301
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2797,7 +2807,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 0
+  pawnColor: 0
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &1404664529
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3517,7 +3529,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 0
+  pawnColor: 0
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &1879646371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3666,7 +3680,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 1
+  pawnColor: 1
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &1932134187
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3877,7 +3893,9 @@ MonoBehaviour:
   boardCases: {fileID: 108498020}
   pawnMoveSpeed: 2
   pawnDestinationCase: {fileID: 0}
-  pawnPawnColor: 0
+  pawnColor: 0
+  greenPawnSets: {fileID: 1095274489}
+  yellowPawnSets: {fileID: 980579531}
 --- !u!212 &2077944549
 SpriteRenderer:
   m_ObjectHideFlags: 0

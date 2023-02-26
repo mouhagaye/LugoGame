@@ -12,14 +12,17 @@ namespace PawnNamespace
     {
         // Pawn attribute.
         public PawnColor currentPawnColor;
-        public int[] pawnUnAllowedCoordinates = new int[3];
+        public int[] pawnUnAllowedCoordinates;
         public int pawnInitialCase;
         public bool pawnIsBlock;
+        public bool pawnIsInside;
         public bool pawnIsOut;
         
         // Set pawn color and Initialize Pawn Attribute according to Color.
         public void SetPawnColor(PawnColor newPawnColor){
             this.currentPawnColor = newPawnColor;
+            this.pawnIsBlock = true;
+            this.pawnIsInside = true;
             this.InitPawn();
         }
         

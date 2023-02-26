@@ -16,19 +16,28 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug
+        
         Debug.Log(CurrentTurnColor);
     }
 
-    public static void UpdateTurn()
+    public static void TurnUpdater() {
+        if (PawnUtils.CurrentPawnSets.pawnsOut == 0 && !Dice.DiceClickable && Dice.SixCounts == 0)
+        {
+            TurnSwitcher();
+        }
+    }
+    
+    public static void TurnSwitcher()
     {
        switch (CurrentTurnColor)
         {
             case PawnColor.Green:
                 CurrentTurnColor = PawnColor.Yellow;
+                Dice.DiceClickable = true;
                 break;
             case PawnColor.Yellow:
                 CurrentTurnColor = PawnColor.Green;
+                Dice.DiceClickable = true;
                 break;
             
         }
