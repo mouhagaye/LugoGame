@@ -1,7 +1,6 @@
 using System.Collections;
 using PawnNamespace;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class PawnUtils: MonoBehaviour
 {
@@ -34,6 +33,8 @@ public class PawnUtils: MonoBehaviour
         // Set color to pawn object and init all pawn attribute
         _pawnObject.SetPawnColor(pawnColor);
         _pawnCurrentCoordinate = _pawnObject.pawnInitialCase;
+        _pawnObject.pawnIsInside = true;
+        _pawnObject.pawnIsOut = false;
         
         // Set Board case coordinates
         for (int i = 0; i <= (BoardCaseCount - 1); i++){
@@ -59,18 +60,23 @@ public class PawnUtils: MonoBehaviour
         if (this.pawnColor != GameController.CurrentTurnColor)
             _pawnObject.pawnIsBlock = true;
         
+        Debug.Log("Dice clickagle: " + Dice.DiceClickable);
+        
     }
 
     // Called when mouse is down in Pawn game object.
     private void OnMouseDown(){
         // Move if current tour allowed it.
-        if(pawnCanRun())
+        if(pawnCanRun()) {
             StartCoroutine(nameof(MovePawn));
+            
+        }
     }
 
     private bool pawnCanRun()
     {
-        if (Dice.SixCounts > 0 || CurrentPawnSets.pawnsOut > 0)
+        if (_pawnObject.currentPawnColor == GameController.CurrentTurnColor ||
+            !Dice.DiceClickable)
             return true;
         else
             return false;
@@ -80,9 +86,16 @@ public class PawnUtils: MonoBehaviour
     // Moving Pawn
     IEnumerator MovePawn(){
 
-        if (_pawnObject.pawnIsInside)
-        // Decrement six count
+        if (_pawnObject.pawnIsInside && Dice.SixCounts > 0) {
+            // Decrement six count
             Dice.SixCounts--;
+            _pawnObject.pawnIsInside = false;
+            _pawnObject.pawnIsOut = true;
+            CurrentPawnSets.pawnsIn--;
+            CurrentPawnSets.pawnsOut++;
+            _pawnCurrentCoordinate = _pawnObject.pawnInitialCase;
+
+        }
         else if (Dice.SixCounts > 1)
         {
             _pawnMoveDistance = 6;
@@ -98,7 +111,7 @@ public class PawnUtils: MonoBehaviour
             _pawnMoveDistance = Dice.DiceRollingResult;
         }
 
-            // Loop to move pawn case by case.
+        // Loop to move pawn case by case.
         for (int i = 0; i <= _pawnMoveDistance; i++){
             
             // pawn's next index should be between 0 and board point count.
@@ -126,7 +139,8 @@ public class PawnUtils: MonoBehaviour
         // Update pawn coordinate.
         _pawnCurrentCoordinate = _pawnRunNextCoordinate;
         
+        
         // Update Dice clickability
-        GameController.TurnUpdater();
+        GameController.PawnTurnUpdater();
     }
 }

@@ -18,10 +18,18 @@ public class GameController : MonoBehaviour
     {
         
         Debug.Log(CurrentTurnColor);
+        Debug.Log("Current pawns set PAWN IN : " + PawnUtils.CurrentPawnSets.pawnsIn);
+        Debug.Log("Current pawns set PAWN OUT : " + PawnUtils.CurrentPawnSets.pawnsOut);
     }
 
-    public static void TurnUpdater() {
-        if (PawnUtils.CurrentPawnSets.pawnsOut == 0 && !Dice.DiceClickable && Dice.SixCounts == 0)
+    public static void DiceTurnUpdater() {
+        if (PawnUtils.CurrentPawnSets.pawnsOut == 0 && Dice.SixCounts == 0)
+        {
+            TurnSwitcher();
+        }
+    }
+    public static void PawnTurnUpdater() {
+        if (Dice.SixCounts == 0)
         {
             TurnSwitcher();
         }

@@ -64,6 +64,6 @@ public class Dice : MonoBehaviour
             SixCounts++;
 
         // Check Turn Updater
-        GameController.TurnUpdater();
+        GameController.DiceTurnUpdater();
     }
 }
